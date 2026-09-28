@@ -1,0 +1,50 @@
+category,item,specification,qty,sourcing,approx_cost_usd
+PURCHASED CHASSIS PARTS,Aluminium square tube,"6063-T5 10x10x1 mm, cut 2x 238 mm, drill 6x Ø3.4 each per drawing DWG-110-RAIL",2,Metal supplier / hardware store (1 m length),12
+PURCHASED CHASSIS PARTS,"Wheel + tyre, 1/10 buggy/rally","Ø85 x 35 mm, 12 mm hex, 5 mm bore, 2.2"" rim (VERIFY ID ≥ 54 mm, offset ≥ 0)",4,RC hobby shop (e.g. 1/10 rally / 2WD buggy sets),28
+SUSPENSION COMPONENTS,Oil shock absorber 1/10,"80 mm eye-eye extended, ≥ 22 mm stroke, M3 ball-cup ends, springs ~1.0–1.5 N/mm",4,RC hobby / AliExpress '1/10 80mm shock',24
+SUSPENSION COMPONENTS,Spring set,"Front 1.4 N/mm, rear 1.0 N/mm (≈ 8 lb/in and 5.7 lb/in) to suit shock body",1,RC hobby,10
+SUSPENSION COMPONENTS,"M3 ball stud 6.8 mm, 4 mm neck","steel, M3 x 4 thread",10,RC hobby 'ball stud 6.8mm',5.0
+SUSPENSION COMPONENTS,"M3 ball stud 6.8 mm, 7 mm neck","steel, M3 thread; + 7 mm M3 spacer for front shock tops",8,RC hobby,4.0
+SUSPENSION COMPONENTS,M3 ball end 6.8 mm (plastic),M3 female thread,10,RC hobby,4.0
+SUSPENSION COMPONENTS,"M3 turnbuckle, left/right thread",~45 mm (camber link 57 mm c-c),2,RC hobby,3.0
+SUSPENSION COMPONENTS,Steel hinge pin,Ø3 x 50 mm (or M3x50 SHCS + nyloc),2,RC hobby / McMaster,2
+STEERING COMPONENTS,Standard digital servo 20 kg·cm,"40.5x20x38.5 mm, 25T spline, 6.0–7.4 V (DS3218 class)",1,Amazon/AliExpress/RC hobby,18
+STEERING COMPONENTS,25T aluminium servo horn / servo saver,"18 mm pin radius, M3 hole",1,RC hobby,5
+STEERING COMPONENTS,"M3 turnbuckle, left/right thread",~60 mm (tie rod 74.35 mm c-c),2,RC hobby,3.0
+STEERING COMPONENTS,ISO 7379 shoulder screw,"Ø4 x 12, M3 thread",2,McMaster/Misumi/AliExpress,2.4
+STEERING COMPONENTS,ISO 7379 shoulder screw,"Ø4 x 6, M3 thread",4,McMaster/Misumi/AliExpress,4
+DRIVETRAIN COMPONENTS,Pololu universal aluminium hub,"6 mm bore, M3 holes (#1999, 2-pack)",1,Pololu,8
+DRIVETRAIN COMPONENTS,12 mm wheel hex,"5 mm bore, 6 mm thick",2,RC hobby,1.0
+MOTORS,"Pololu 37D metal gearmotor 19:1, 64 CPR encoder, 12 V","#4751 (VERIFY: 530 rpm, 8.5 kg·cm stall, 5.5 A stall)",2,Pololu,100
+BEARINGS,685ZZ,5 x 11 x 4 mm,4,Bearing supplier (10-pack),2.0
+BEARINGS,686ZZ,6 x 13 x 5 mm,4,Bearing supplier (10-pack),2.4
+BEARINGS,MR84ZZ,4 x 8 x 3 mm,4,Bearing supplier (10-pack),2.0
+BATTERY,3S LiPo 5000 mAh hard case,"11.1 V, ≤ 140 x 48 x 38 mm, XT60, ≥ 25C",1,RC hobby,45
+BATTERY,LiPo balance charger,"3S balance, ≥ 50 W",1,RC hobby,35
+BATTERY,LiPo voltage alarm / checker,1–8S,1,RC hobby,4
+ELECTRONICS,NVIDIA Jetson Orin Nano Super Developer Kit,"8 GB, 103 x 90.5 x 34.8 mm",1,NVIDIA partners / Arrow / Seeed,249
+ELECTRONICS,microSD / NVMe SSD,NVMe M.2 2280 256 GB,1,Any,30
+ELECTRONICS,Teensy 4.1,"600 MHz, 8x quadrature capable",1,PJRC / SparkFun,32
+ELECTRONICS,Perfboard 70 x 50 mm + headers,"2.54 mm pitch, 4x Ø2 holes 66 x 46",1,Any,3
+ELECTRONICS,Cytron MDD10A,"dual 10 A, 5–30 V H-bridge (VERIFY hole pattern, slotted tray)",1,Cytron / RobotShop,25
+ELECTRONICS,DC-DC buck-boost 19 V,"≥ 60 W, 9–13 V in (VERIFY footprint ≤ 60 x 50)",1,Amazon/AliExpress (DROK class),15
+ELECTRONICS,5 V 5 A buck,Pololu D36V50F5 class,1,Pololu,20
+ELECTRONICS,6 V 5 A BEC,"switching, for servo",1,RC hobby,10
+ELECTRONICS,SBUS receiver + transmitter,"FrSky/RadioMaster, ≥ 6 ch incl. switch channel",1,RC hobby,60
+ELECTRONICS,22 mm latching mushroom E-stop,"NC contact ≥ 10 A, panel ≤ 6 mm",1,Amazon/AliExpress,8
+ELECTRONICS,Automotive relay / MOSFET switch 30 A,"12 V coil, driven by Teensy watchdog",1,Any,5
+ELECTRONICS,2-way ATO blade fuse holder + fuses,"15 A main, 10 A motor, 5 A compute",1,Automotive,8
+SENSORS,Intel RealSense D435i,"90 x 25 x 25, USB-C, with IMU",1,Intel / resellers (alt: Luxonis OAK-D Lite w/ new 81 adapter),330
+SENSORS,IMX219 160° CSI camera,"25 x 24 mm board, M2 21 x 12.5",1,Arducam / Waveshare,20
+SENSORS,Slamtec RPLIDAR A1M8 (optional),"360°, 12 m (VERIFY base hole pattern, slotted 82 adapter)",1,Slamtec / DFRobot,99
+SENSORS,BNO085 9-DoF IMU breakout,Adafruit 4754 class,1,Adafruit,25
+SENSORS,VL53L1X ToF breakout,"4 m ToF, I2C (address set at boot)",4,Pololu / Adafruit,48
+SENSORS,AS5600 magnetic encoder + 6x2.5 diametric magnet (optional),I2C/analog,2,AliExpress / Adafruit,10
+CONNECTORS/WIRING,XT60 pair + pigtail,12 AWG,2,RC hobby,6
+CONNECTORS/WIRING,Silicone wire,"14 AWG red/black 1 m, 18 AWG 2 m, 22 AWG 5 m, 26 AWG 5 m",1,RC hobby,20
+CONNECTORS/WIRING,JST-GH / JST-XH connector kit,4–6 pin,1,Any,12
+CONNECTORS/WIRING,Powered USB 3 hub (compact),4-port,1,Any,15
+CONNECTORS/WIRING,"Zip ties 2.5 mm, spiral wrap, 10 mm grommet",,1,Any,6
+FASTENERS,Metric fastener + insert kit (see BOM),,1,Assortment,45
+FILAMENT,"PA-CF ≈ 0.5 kg, PETG ≈ 1 kg, PETG-CF ≈ 0.2 kg, TPU 95A ≈ 0.3 kg",,1,Filament supplier,58.01
+TOTAL,,,,,1482.81

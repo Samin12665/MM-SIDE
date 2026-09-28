@@ -1,0 +1,597 @@
+{
+  "10_MAIN_CHASSIS": {
+    "volume_cm3": 289.00922520241886,
+    "material": "PETG-CF or ASA",
+    "centroid": [
+      2.4,
+      -0.1,
+      44.5
+    ],
+    "print_bbox": [
+      230.0,
+      158.0,
+      45.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 375.7119927631445,
+    "mass_g_printed": 281.7839945723584
+  },
+  "11_LOWER_SKID": {
+    "volume_cm3": 64.23514265542363,
+    "material": "PETG",
+    "centroid": [
+      0.2,
+      0.0,
+      26.0
+    ],
+    "print_bbox": [
+      226.0,
+      144.0,
+      2.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 81.57863117238801,
+    "mass_g_printed": 53.026110262052214
+  },
+  "12_UPPER_ELECTRONICS_DECK": {
+    "volume_cm3": 158.26781873484776,
+    "material": "PETG",
+    "centroid": [
+      27.8,
+      -0.0,
+      92.7
+    ],
+    "print_bbox": [
+      208.0,
+      160.0,
+      14.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 201.00012979325666,
+    "mass_g_printed": 130.65008436561683
+  },
+  "61_BATTERY_DOOR_L": {
+    "volume_cm3": 8.736347785033677,
+    "material": "PETG",
+    "centroid": [
+      30.0,
+      77.9,
+      47.6
+    ],
+    "print_bbox": [
+      66.0,
+      43.0,
+      9.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 11.095161686992771,
+    "mass_g_printed": 7.211855096545301
+  },
+  "61_BATTERY_DOOR_R": {
+    "volume_cm3": 8.736347785033676,
+    "material": "PETG",
+    "centroid": [
+      30.0,
+      -77.9,
+      47.6
+    ],
+    "print_bbox": [
+      66.0,
+      43.0,
+      9.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 11.095161686992768,
+    "mass_g_printed": 7.211855096545299
+  },
+  "20_FRONT_BULKHEAD": {
+    "volume_cm3": 80.08911193954722,
+    "material": "PA-CF (PETG-CF acceptable)",
+    "centroid": [
+      160.8,
+      -2.8,
+      35.6
+    ],
+    "print_bbox": [
+      104.0,
+      124.0,
+      58.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 92.1024787304793,
+    "mass_g_printed": 78.2871069209074
+  },
+  "24_FRONT_SHOCK_TOWER": {
+    "volume_cm3": 55.61468660090234,
+    "material": "PA-CF",
+    "centroid": [
+      141.5,
+      -0.0,
+      72.5
+    ],
+    "print_bbox": [
+      79.0,
+      180.0,
+      15.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 63.95688959103769,
+    "mass_g_printed": 54.36335615238203
+  },
+  "21_FRONT_KNUCKLE_L": {
+    "volume_cm3": 2.9925383354750505,
+    "material": "PA-CF",
+    "centroid": [
+      152.3,
+      109.3,
+      41.8
+    ],
+    "print_bbox": [
+      39.4,
+      22.3,
+      19.6
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 3.441419085796308,
+    "mass_g_printed": 2.9252062229268616
+  },
+  "22_FRONT_KNUCKLE_R": {
+    "volume_cm3": 2.9925383354750505,
+    "material": "PA-CF",
+    "centroid": [
+      152.3,
+      -109.3,
+      41.8
+    ],
+    "print_bbox": [
+      39.4,
+      22.3,
+      19.6
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 3.441419085796308,
+    "mass_g_printed": 2.9252062229268616
+  },
+  "23_FRONT_LOWER_ARM_L": {
+    "volume_cm3": 15.555960354564489,
+    "material": "PA-CF",
+    "centroid": [
+      144.6,
+      67.1,
+      26.4
+    ],
+    "print_bbox": [
+      44.5,
+      73.3,
+      8.6
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 17.88935440774916,
+    "mass_g_printed": 15.205951246586785
+  },
+  "23_FRONT_LOWER_ARM_R": {
+    "volume_cm3": 15.555960354564489,
+    "material": "PA-CF",
+    "centroid": [
+      144.6,
+      -67.1,
+      26.4
+    ],
+    "print_bbox": [
+      44.5,
+      73.3,
+      8.6
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 17.88935440774916,
+    "mass_g_printed": 15.205951246586785
+  },
+  "42_BELLCRANK_L": {
+    "volume_cm3": 1.3980052187745793,
+    "material": "PA-CF",
+    "centroid": [
+      177.0,
+      47.7,
+      35.4
+    ],
+    "print_bbox": [
+      41.1,
+      14.7,
+      14.5
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 1.607706001590766,
+    "mass_g_printed": 1.366550101352151
+  },
+  "42_BELLCRANK_R": {
+    "volume_cm3": 1.3980052187745575,
+    "material": "PA-CF",
+    "centroid": [
+      177.0,
+      -47.7,
+      35.4
+    ],
+    "print_bbox": [
+      41.1,
+      14.7,
+      14.5
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 1.607706001590741,
+    "mass_g_printed": 1.3665501013521297
+  },
+  "42_DRAG_LINK": {
+    "volume_cm3": 1.8232020522932206,
+    "material": "PA-CF",
+    "centroid": [
+      161.7,
+      0.0,
+      44.8
+    ],
+    "print_bbox": [
+      10.0,
+      107.8,
+      3.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 2.0966823601372035,
+    "mass_g_printed": 1.7821800061166229
+  },
+  "42_SERVO_LINK": {
+    "volume_cm3": 1.0583244887684746,
+    "material": "PA-CF",
+    "centroid": [
+      175.0,
+      0.0,
+      48.1
+    ],
+    "print_bbox": [
+      40.0,
+      10.0,
+      3.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 1.2170731620837458,
+    "mass_g_printed": 1.034512187771184
+  },
+  "31_REAR_TRAILING_ARM_L": {
+    "volume_cm3": 57.254482652255334,
+    "material": "PA-CF",
+    "centroid": [
+      -96.9,
+      89.3,
+      47.3
+    ],
+    "print_bbox": [
+      151.0,
+      52.0,
+      26.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 65.84265505009363,
+    "mass_g_printed": 55.96625679257958
+  },
+  "31_REAR_TRAILING_ARM_R": {
+    "volume_cm3": 57.254482652255334,
+    "material": "PA-CF",
+    "centroid": [
+      -96.9,
+      -89.3,
+      47.3
+    ],
+    "print_bbox": [
+      151.0,
+      52.0,
+      26.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 65.84265505009363,
+    "mass_g_printed": 55.96625679257958
+  },
+  "32_REAR_HEX_ADAPTER_L": {
+    "volume_cm3": 1.9218217025196975,
+    "material": "PA-CF",
+    "centroid": [
+      -150.0,
+      113.7,
+      42.5
+    ],
+    "print_bbox": [
+      22.0,
+      22.0,
+      10.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 2.210094957897652,
+    "mass_g_printed": 1.8785807142130042
+  },
+  "32_REAR_HEX_ADAPTER_R": {
+    "volume_cm3": 1.9218217025196975,
+    "material": "PA-CF",
+    "centroid": [
+      -150.0,
+      -113.7,
+      42.5
+    ],
+    "print_bbox": [
+      22.0,
+      22.0,
+      10.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 2.210094957897652,
+    "mass_g_printed": 1.8785807142130042
+  },
+  "30_REAR_SHOCK_TOWER": {
+    "volume_cm3": 80.69627433093083,
+    "material": "PA-CF (PETG-CF acceptable)",
+    "centroid": [
+      -104.1,
+      -0.0,
+      107.3
+    ],
+    "print_bbox": [
+      56.2,
+      192.0,
+      148.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 92.80071548057045,
+    "mass_g_printed": 78.88060815848488
+  },
+  "70_COMPUTE_MOUNT": {
+    "volume_cm3": 32.9498139876629,
+    "material": "PETG",
+    "centroid": [
+      -14.0,
+      -0.0,
+      97.6
+    ],
+    "print_bbox": [
+      112.0,
+      112.0,
+      9.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 41.84626376433188,
+    "mass_g_printed": 27.200071446815723
+  },
+  "71_MOTOR_CONTROLLER_MOUNT": {
+    "volume_cm3": 19.401651755721897,
+    "material": "PETG",
+    "centroid": [
+      -65.1,
+      29.2,
+      38.7
+    ],
+    "print_bbox": [
+      92.0,
+      72.0,
+      9.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 24.640097729766808,
+    "mass_g_printed": 16.016063524348425
+  },
+  "72_POWER_MODULE_MOUNT": {
+    "volume_cm3": 11.640588627151454,
+    "material": "PETG",
+    "centroid": [
+      -75.9,
+      -36.0,
+      38.8
+    ],
+    "print_bbox": [
+      68.0,
+      56.0,
+      9.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 14.783547556482347,
+    "mass_g_printed": 9.609305911713525
+  },
+  "73_FRONT_POWER_TRAY": {
+    "volume_cm3": 18.535885284217716,
+    "material": "PETG",
+    "centroid": [
+      82.0,
+      -0.1,
+      38.7
+    ],
+    "print_bbox": [
+      44.5,
+      140.5,
+      7.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 23.5405743109565,
+    "mass_g_printed": 15.301373302121727
+  },
+  "74_MCU_IMU_PLATE": {
+    "volume_cm3": 38.527241429271264,
+    "material": "PETG",
+    "centroid": [
+      91.9,
+      -3.3,
+      98.9
+    ],
+    "print_bbox": [
+      78.0,
+      132.0,
+      33.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 48.9295966151745,
+    "mass_g_printed": 31.80423779986343
+  },
+  "83_SENSOR_MAST": {
+    "volume_cm3": 45.42740520151267,
+    "material": "PETG-CF",
+    "centroid": [
+      157.0,
+      -0.0,
+      150.1
+    ],
+    "print_bbox": [
+      74.0,
+      100.0,
+      55.5
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 59.05562676196647,
+    "mass_g_printed": 44.291720071474856
+  },
+  "81_DEPTH_SENSOR_MOUNT": {
+    "volume_cm3": 16.44833275569798,
+    "material": "PETG",
+    "centroid": [
+      164.8,
+      0.0,
+      132.2
+    ],
+    "print_bbox": [
+      32.5,
+      92.0,
+      30.1
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 20.889382599736436,
+    "mass_g_printed": 13.578098689828684
+  },
+  "80_CAMERA_MOUNT": {
+    "volume_cm3": 2.6171920373349438,
+    "material": "PETG",
+    "centroid": [
+      167.0,
+      -0.0,
+      169.5
+    ],
+    "print_bbox": [
+      12.6,
+      28.0,
+      25.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 3.3238338874153786,
+    "mass_g_printed": 2.160492026819996
+  },
+  "84_LIDAR_MAST": {
+    "volume_cm3": 63.26032221115772,
+    "material": "PETG-CF",
+    "centroid": [
+      -40.9,
+      -0.0,
+      168.5
+    ],
+    "print_bbox": [
+      84.0,
+      152.0,
+      101.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 82.23841887450504,
+    "mass_g_printed": 61.67881415587878
+  },
+  "82_LIDAR_MOUNT": {
+    "volume_cm3": 31.832648757484645,
+    "material": "PETG",
+    "centroid": [
+      -40.0,
+      0.0,
+      198.5
+    ],
+    "print_bbox": [
+      100.0,
+      120.0,
+      3.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 40.4274639220055,
+    "mass_g_printed": 26.277851549303577
+  },
+  "90_FRONT_BUMPER": {
+    "volume_cm3": 64.70789399760596,
+    "material": "TPU 95A",
+    "centroid": [
+      228.4,
+      -0.1,
+      58.4
+    ],
+    "print_bbox": [
+      16.0,
+      230.0,
+      53.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 78.29655173710321,
+    "mass_g_printed": 62.63724138968257
+  },
+  "91_REAR_BUMPER": {
+    "volume_cm3": 72.91547272194904,
+    "material": "TPU 95A",
+    "centroid": [
+      -232.0,
+      -0.0,
+      63.5
+    ],
+    "print_bbox": [
+      12.0,
+      230.0,
+      63.0
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 88.22772199355835,
+    "mass_g_printed": 70.58217759484668
+  },
+  "92_BODY_SIDE_SKIRT_L": {
+    "volume_cm3": 13.950000000000006,
+    "material": "PETG",
+    "centroid": [
+      23.3,
+      80.5,
+      96.8
+    ],
+    "print_bbox": [
+      190.0,
+      26.0,
+      10.5
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 17.716500000000007,
+    "mass_g_printed": 11.515725000000005
+  },
+  "92_BODY_SIDE_SKIRT_R": {
+    "volume_cm3": 13.950000000000006,
+    "material": "PETG",
+    "centroid": [
+      23.3,
+      -80.5,
+      96.8
+    ],
+    "print_bbox": [
+      190.0,
+      26.0,
+      10.5
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 17.716500000000007,
+    "mass_g_printed": 11.515725000000005
+  },
+  "100_RAIL_CABLE_CLIP": {
+    "volume_cm3": 0.727,
+    "material": "PETG",
+    "centroid": [
+      0.0,
+      71.1,
+      80.2
+    ],
+    "print_bbox": [
+      10.0,
+      15.0,
+      10.5
+    ],
+    "fits_bed": true,
+    "mass_g_solid": 0.9232899999999999,
+    "mass_g_printed": 0.6001385
+  }
+}

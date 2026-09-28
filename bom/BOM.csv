@@ -1,0 +1,102 @@
+category,item,specification,quantity,function,sourcing,approx_cost_usd
+3D PRINTED PARTS,10_MAIN_CHASSIS,PETG-CF or ASA; 289.0 cm³; ≈282 g,1,,Print (see print_list.csv),16.91
+3D PRINTED PARTS,11_LOWER_SKID,PETG; 64.2 cm³; ≈53 g,1,,Print (see print_list.csv),1.33
+3D PRINTED PARTS,12_UPPER_ELECTRONICS_DECK,PETG; 158.3 cm³; ≈131 g,1,,Print (see print_list.csv),3.27
+3D PRINTED PARTS,61_BATTERY_DOOR_L,PETG; 8.7 cm³; ≈7 g,1,,Print (see print_list.csv),0.18
+3D PRINTED PARTS,61_BATTERY_DOOR_R,PETG; 8.7 cm³; ≈7 g,1,,Print (see print_list.csv),0.18
+3D PRINTED PARTS,20_FRONT_BULKHEAD,PA-CF (PETG-CF acceptable); 80.1 cm³; ≈78 g,1,,Print (see print_list.csv),4.7
+3D PRINTED PARTS,24_FRONT_SHOCK_TOWER,PA-CF; 55.6 cm³; ≈54 g,1,,Print (see print_list.csv),3.26
+3D PRINTED PARTS,21_FRONT_KNUCKLE_L,PA-CF; 3.0 cm³; ≈3 g,1,,Print (see print_list.csv),0.18
+3D PRINTED PARTS,22_FRONT_KNUCKLE_R,PA-CF; 3.0 cm³; ≈3 g,1,,Print (see print_list.csv),0.18
+3D PRINTED PARTS,23_FRONT_LOWER_ARM_L,PA-CF; 15.6 cm³; ≈15 g,1,,Print (see print_list.csv),0.91
+3D PRINTED PARTS,23_FRONT_LOWER_ARM_R,PA-CF; 15.6 cm³; ≈15 g,1,,Print (see print_list.csv),0.91
+3D PRINTED PARTS,42_BELLCRANK_L,PA-CF; 1.4 cm³; ≈1 g,1,,Print (see print_list.csv),0.08
+3D PRINTED PARTS,42_BELLCRANK_R,PA-CF; 1.4 cm³; ≈1 g,1,,Print (see print_list.csv),0.08
+3D PRINTED PARTS,42_DRAG_LINK,PA-CF; 1.8 cm³; ≈2 g,1,,Print (see print_list.csv),0.11
+3D PRINTED PARTS,42_SERVO_LINK,PA-CF; 1.1 cm³; ≈1 g,1,,Print (see print_list.csv),0.06
+3D PRINTED PARTS,31_REAR_TRAILING_ARM_L,PA-CF; 57.3 cm³; ≈56 g,1,,Print (see print_list.csv),3.36
+3D PRINTED PARTS,31_REAR_TRAILING_ARM_R,PA-CF; 57.3 cm³; ≈56 g,1,,Print (see print_list.csv),3.36
+3D PRINTED PARTS,32_REAR_HEX_ADAPTER_L,PA-CF; 1.9 cm³; ≈2 g,1,,Print (see print_list.csv),0.11
+3D PRINTED PARTS,32_REAR_HEX_ADAPTER_R,PA-CF; 1.9 cm³; ≈2 g,1,,Print (see print_list.csv),0.11
+3D PRINTED PARTS,30_REAR_SHOCK_TOWER,PA-CF (PETG-CF acceptable); 80.7 cm³; ≈79 g,1,,Print (see print_list.csv),4.73
+3D PRINTED PARTS,70_COMPUTE_MOUNT,PETG; 32.9 cm³; ≈27 g,1,,Print (see print_list.csv),0.68
+3D PRINTED PARTS,71_MOTOR_CONTROLLER_MOUNT,PETG; 19.4 cm³; ≈16 g,1,,Print (see print_list.csv),0.4
+3D PRINTED PARTS,72_POWER_MODULE_MOUNT,PETG; 11.6 cm³; ≈10 g,1,,Print (see print_list.csv),0.24
+3D PRINTED PARTS,73_FRONT_POWER_TRAY,PETG; 18.5 cm³; ≈15 g,1,,Print (see print_list.csv),0.38
+3D PRINTED PARTS,74_MCU_IMU_PLATE,PETG; 38.5 cm³; ≈32 g,1,,Print (see print_list.csv),0.8
+3D PRINTED PARTS,83_SENSOR_MAST,PETG-CF; 45.4 cm³; ≈44 g,1,,Print (see print_list.csv),2.66
+3D PRINTED PARTS,81_DEPTH_SENSOR_MOUNT,PETG; 16.4 cm³; ≈14 g,1,,Print (see print_list.csv),0.34
+3D PRINTED PARTS,80_CAMERA_MOUNT,PETG; 2.6 cm³; ≈2 g,1,,Print (see print_list.csv),0.05
+3D PRINTED PARTS,84_LIDAR_MAST,PETG-CF; 63.3 cm³; ≈62 g,1,,Print (see print_list.csv),3.7
+3D PRINTED PARTS,82_LIDAR_MOUNT,PETG; 31.8 cm³; ≈26 g,1,,Print (see print_list.csv),0.66
+3D PRINTED PARTS,90_FRONT_BUMPER,TPU 95A; 64.7 cm³; ≈63 g,1,,Print (see print_list.csv),1.57
+3D PRINTED PARTS,91_REAR_BUMPER,TPU 95A; 72.9 cm³; ≈71 g,1,,Print (see print_list.csv),1.76
+3D PRINTED PARTS,92_BODY_SIDE_SKIRT_L,PETG; 14.0 cm³; ≈12 g,1,,Print (see print_list.csv),0.29
+3D PRINTED PARTS,92_BODY_SIDE_SKIRT_R,PETG; 14.0 cm³; ≈12 g,1,,Print (see print_list.csv),0.29
+3D PRINTED PARTS,100_RAIL_CABLE_CLIP,PETG; 0.7 cm³; ≈1 g,12,,Print (see print_list.csv),0.18
+PURCHASED CHASSIS PARTS,Aluminium square tube,"6063-T5 10x10x1 mm, cut 2x 238 mm, drill 6x Ø3.4 each per drawing DWG-110-RAIL",2,Chassis longerons (torsion box top chords),Metal supplier / hardware store (1 m length),12
+PURCHASED CHASSIS PARTS,"Wheel + tyre, 1/10 buggy/rally","Ø85 x 35 mm, 12 mm hex, 5 mm bore, 2.2"" rim (VERIFY ID ≥ 54 mm, offset ≥ 0)",4,Wheels,RC hobby shop (e.g. 1/10 rally / 2WD buggy sets),28
+SUSPENSION COMPONENTS,Oil shock absorber 1/10,"80 mm eye-eye extended, ≥ 22 mm stroke, M3 ball-cup ends, springs ~1.0–1.5 N/mm",4,"Damping + springs (front MR 0.57, rear MR 0.70)",RC hobby / AliExpress '1/10 80mm shock',24
+SUSPENSION COMPONENTS,Spring set,"Front 1.4 N/mm, rear 1.0 N/mm (≈ 8 lb/in and 5.7 lb/in) to suit shock body",1,Ride frequency 3.5 Hz,RC hobby,10
+SUSPENSION COMPONENTS,"M3 ball stud 6.8 mm, 4 mm neck","steel, M3 x 4 thread",10,"Knuckle upper/lower balls, tower camber balls, steering arms",RC hobby 'ball stud 6.8mm',5.0
+SUSPENSION COMPONENTS,"M3 ball stud 6.8 mm, 7 mm neck","steel, M3 thread; + 7 mm M3 spacer for front shock tops",8,Shock top/bottom mounts,RC hobby,4.0
+SUSPENSION COMPONENTS,M3 ball end 6.8 mm (plastic),M3 female thread,10,Lower knuckle joints (2) + turnbuckle ends (8),RC hobby,4.0
+SUSPENSION COMPONENTS,"M3 turnbuckle, left/right thread",~45 mm (camber link 57 mm c-c),2,Adjustable camber links,RC hobby,3.0
+SUSPENSION COMPONENTS,Steel hinge pin,Ø3 x 50 mm (or M3x50 SHCS + nyloc),2,Front lower-arm hinges,RC hobby / McMaster,2
+STEERING COMPONENTS,Standard digital servo 20 kg·cm,"40.5x20x38.5 mm, 25T spline, 6.0–7.4 V (DS3218 class)",1,"Steering actuator (required 4.4 kg·cm, SF 4.5)",Amazon/AliExpress/RC hobby,18
+STEERING COMPONENTS,25T aluminium servo horn / servo saver,"18 mm pin radius, M3 hole",1,Horn to servo link,RC hobby,5
+STEERING COMPONENTS,"M3 turnbuckle, left/right thread",~60 mm (tie rod 74.35 mm c-c),2,Adjustable tie rods (toe),RC hobby,3.0
+STEERING COMPONENTS,ISO 7379 shoulder screw,"Ø4 x 12, M3 thread",2,Bellcrank pivots,McMaster/Misumi/AliExpress,2.4
+STEERING COMPONENTS,ISO 7379 shoulder screw,"Ø4 x 6, M3 thread",4,Drag-link and servo-link pivots,McMaster/Misumi/AliExpress,4
+DRIVETRAIN COMPONENTS,Pololu universal aluminium hub,"6 mm bore, M3 holes (#1999, 2-pack)",1,Gearmotor shaft to hex adapter,Pololu,8
+DRIVETRAIN COMPONENTS,12 mm wheel hex,"5 mm bore, 6 mm thick",2,Front hubs,RC hobby,1.0
+MOTORS,"Pololu 37D metal gearmotor 19:1, 64 CPR encoder, 12 V","#4751 (VERIFY: 530 rpm, 8.5 kg·cm stall, 5.5 A stall)",2,"Rear drive, independent L/R, wheel odometry 1216 cnt/rev",Pololu,100
+BEARINGS,685ZZ,5 x 11 x 4 mm,4,Front axle (2 per knuckle),Bearing supplier (10-pack),2.0
+BEARINGS,686ZZ,6 x 13 x 5 mm,4,Rear trailing-arm pivots,Bearing supplier (10-pack),2.4
+BEARINGS,MR84ZZ,4 x 8 x 3 mm,4,Bellcrank pivots,Bearing supplier (10-pack),2.0
+BATTERY,3S LiPo 5000 mAh hard case,"11.1 V, ≤ 140 x 48 x 38 mm, XT60, ≥ 25C",1,Main power (≈ 57 min mixed runtime),RC hobby,45
+BATTERY,LiPo balance charger,"3S balance, ≥ 50 W",1,Charging,RC hobby,35
+BATTERY,LiPo voltage alarm / checker,1–8S,1,Low-voltage warning (until firmware monitoring),RC hobby,4
+ELECTRONICS,NVIDIA Jetson Orin Nano Super Developer Kit,"8 GB, 103 x 90.5 x 34.8 mm",1,"Main compute (vision, SLAM, planning)",NVIDIA partners / Arrow / Seeed,249
+ELECTRONICS,microSD / NVMe SSD,NVMe M.2 2280 256 GB,1,Jetson storage,Any,30
+ELECTRONICS,Teensy 4.1,"600 MHz, 8x quadrature capable",1,"Real-time controller: motor PID, encoders, RC input, E-stop logic, IMU",PJRC / SparkFun,32
+ELECTRONICS,Perfboard 70 x 50 mm + headers,"2.54 mm pitch, 4x Ø2 holes 66 x 46",1,Teensy carrier,Any,3
+ELECTRONICS,Cytron MDD10A,"dual 10 A, 5–30 V H-bridge (VERIFY hole pattern, slotted tray)",1,Drive-motor driver,Cytron / RobotShop,25
+ELECTRONICS,DC-DC buck-boost 19 V,"≥ 60 W, 9–13 V in (VERIFY footprint ≤ 60 x 50)",1,Jetson supply,Amazon/AliExpress (DROK class),15
+ELECTRONICS,5 V 5 A buck,Pololu D36V50F5 class,1,"Teensy, sensors, USB hub",Pololu,20
+ELECTRONICS,6 V 5 A BEC,"switching, for servo",1,Steering servo supply,RC hobby,10
+ELECTRONICS,SBUS receiver + transmitter,"FrSky/RadioMaster, ≥ 6 ch incl. switch channel",1,Manual override + wireless E-stop channel,RC hobby,60
+ELECTRONICS,22 mm latching mushroom E-stop,"NC contact ≥ 10 A, panel ≤ 6 mm",1,Hard power cut to motor branch,Amazon/AliExpress,8
+ELECTRONICS,Automotive relay / MOSFET switch 30 A,"12 V coil, driven by Teensy watchdog",1,Software E-stop / watchdog cut of motor power,Any,5
+ELECTRONICS,2-way ATO blade fuse holder + fuses,"15 A main, 10 A motor, 5 A compute",1,Branch protection,Automotive,8
+SENSORS,Intel RealSense D435i,"90 x 25 x 25, USB-C, with IMU",1,Stereo depth + IMU,Intel / resellers (alt: Luxonis OAK-D Lite w/ new 81 adapter),330
+SENSORS,IMX219 160° CSI camera,"25 x 24 mm board, M2 21 x 12.5",1,Wide-angle front camera (Jetson CSI),Arducam / Waveshare,20
+SENSORS,Slamtec RPLIDAR A1M8 (optional),"360°, 12 m (VERIFY base hole pattern, slotted 82 adapter)",1,2D SLAM / obstacle map,Slamtec / DFRobot,99
+SENSORS,BNO085 9-DoF IMU breakout,Adafruit 4754 class,1,Primary IMU near CG line,Adafruit,25
+SENSORS,VL53L1X ToF breakout,"4 m ToF, I2C (address set at boot)",4,"Bumper perimeter ranging (3 front, 1 rear)",Pololu / Adafruit,48
+SENSORS,AS5600 magnetic encoder + 6x2.5 diametric magnet (optional),I2C/analog,2,Front (non-driven) wheel odometry / slip check,AliExpress / Adafruit,10
+CONNECTORS/WIRING,XT60 pair + pigtail,12 AWG,2,Battery connection (pigtail on tub side wall),RC hobby,6
+CONNECTORS/WIRING,Silicone wire,"14 AWG red/black 1 m, 18 AWG 2 m, 22 AWG 5 m, 26 AWG 5 m",1,Power + signal,RC hobby,20
+CONNECTORS/WIRING,JST-GH / JST-XH connector kit,4–6 pin,1,Sensor & encoder leads,Any,12
+CONNECTORS/WIRING,Powered USB 3 hub (compact),4-port,1,D435i + LiDAR + Teensy to Jetson,Any,15
+CONNECTORS/WIRING,"Zip ties 2.5 mm, spiral wrap, 10 mm grommet",,1,Cable management,Any,6
+FASTENERS,M3 x 8 countersunk (ISO 10642),A2 stainless or 12.9 black-oxide,12,Skid to tub floor bosses,Metric assortment kit + singles,
+FASTENERS,M3 x 30 SHCS,A2 stainless or 12.9 black-oxide,8,Deck + rail + tub clamp stations,Metric assortment kit + singles,
+FASTENERS,M3 x 25 SHCS,A2 stainless or 12.9 black-oxide,4,Rear tower feet + rail + tub,Metric assortment kit + singles,
+FASTENERS,M3 x 10 SHCS,A2 stainless or 12.9 black-oxide,30,"Bulkhead-tub (6), tower-bulkhead (4), servo (4), mast (3), lidar mast (4), misc",Metric assortment kit + singles,
+FASTENERS,M3 x 8 SHCS,A2 stainless or 12.9 black-oxide,40,"Trays (20), depth mount (2), camera mount (2), lidar adapter (8), battery-door thumb screws (4 knurled), misc",Metric assortment kit + singles,
+FASTENERS,M3 x 6 SHCS,A2 stainless or 12.9 black-oxide,14,"Gearmotor face (12, VERIFY thread depth), D435i (2)",Metric assortment kit + singles,
+FASTENERS,M3 x 16 SHCS + M3 nyloc,A2 stainless or 12.9 black-oxide,2,Motor cup pinch bolts,Metric assortment kit + singles,
+FASTENERS,M3 x 12 SHCS + 3x12 fender washer,A2 stainless or 12.9 black-oxide,2,Rear wheel retention into hex-adapter insert,Metric assortment kit + singles,
+FASTENERS,M3 x 16 SHCS,A2 stainless or 12.9 black-oxide,2,Front bumper to servo pillars,Metric assortment kit + singles,
+FASTENERS,M3 x 20 SHCS,A2 stainless or 12.9 black-oxide,2,Rear bumper to tower hoop,Metric assortment kit + singles,
+FASTENERS,M3 x 10 SHCS + nut,A2 stainless or 12.9 black-oxide,18,Board stand-offs (slotted),Metric assortment kit + singles,
+FASTENERS,M3 nyloc nuts / washers,A2 stainless or 12.9 black-oxide,40,General,Metric assortment kit + singles,
+FASTENERS,M2 x 6 self-tapping (PT),A2 stainless or 12.9 black-oxide,12,"Teensy carrier, camera board, AS5600",Metric assortment kit + singles,
+FASTENERS,M2.5 x 6 SHCS,A2 stainless or 12.9 black-oxide,8,"IMU, LiDAR base (VERIFY)",Metric assortment kit + singles,
+FASTENERS,M5 x 35 SHCS partially threaded (DIN 912) + M5 nyloc + washers,A2 stainless or 12.9 black-oxide,2,Front rotating axles,Metric assortment kit + singles,
+FASTENERS,"ISO 7379 Ø6 x 25 shoulder bolt, M5 thread + 6x10x1.5 & 6x10x2 washers",A2 stainless or 12.9 black-oxide,2,Rear trailing-arm pivots,Metric assortment kit + singles,
+FASTENERS,M3 heat-set insert 5.7 mm (OD 4.6),A2 stainless or 12.9 black-oxide,150,Printed-part threads (≈ 112 used),Metric assortment kit + singles,
+FASTENERS,M3 heat-set insert 4 mm short,A2 stainless or 12.9 black-oxide,20,"Knuckles, hex adapters (≈ 8 used)",Metric assortment kit + singles,
+FASTENERS,M5 heat-set insert,A2 stainless or 12.9 black-oxide,5,Rear pivots in tub (2 used),Metric assortment kit + singles,
+FASTENERS,M3 spacer 7 mm,A2 stainless or 12.9 black-oxide,4,Front shock top ball studs,Metric assortment kit + singles,
