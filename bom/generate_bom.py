@@ -149,11 +149,12 @@ def main():
     for it, q, use in FASTENERS:
         rows.append(dict(category="FASTENERS", item=it, specification="A2 stainless or 12.9 black-oxide", quantity=q, function=use,
                          sourcing="Metric assortment kit + singles", approx_cost_usd=""))
-    with open(os.path.join(HERE, "BOM.csv"), "w", newline="") as f:
+    # Explicit UTF-8 keeps symbols such as ≈ and Ø portable on Windows.
+    with open(os.path.join(HERE, "BOM.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
         w.writeheader(); w.writerows(rows)
     # print list
-    with open(os.path.join(HERE, "print_list.csv"), "w", newline="") as f:
+    with open(os.path.join(HERE, "print_list.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["part", "qty", "material", "orientation", "layer_mm", "walls", "infill", "top/bottom", "supports",
                     "inserts", "post_processing", "print_bbox_mm", "est_mass_g", "stl"])
@@ -165,7 +166,7 @@ def main():
                         round(d["mass_g_printed"] * QTY.get(n, 1)), f"out/stl/{n}.stl"])
     # purchase list
     total = 0.0
-    with open(os.path.join(HERE, "purchase_list.csv"), "w", newline="") as f:
+    with open(os.path.join(HERE, "purchase_list.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["category", "item", "specification", "qty", "sourcing", "approx_cost_usd"])
         for c, it, spec, q, fn, src, cost in PURCHASED:

@@ -6,6 +6,9 @@ steering system, independent trailing-arm rear suspension carrying two encoder g
 (electronic differential), and packaged autonomy hardware (Jetson Orin Nano, RealSense D435i,
 160° camera, RPLIDAR, IMU, ToF, RC override, hardware E-stop).
 
+The takeover software package adds dependency-free, offline-tested ARV-1 safety/odometry controls
+and an HCRA-6 hand-control safety seam. See `docs/12_software_bringup.md` and `docs/STATUS.md`.
+
 ![ARV-1](out/renders/ASM_CAR_COMPLETE_iso.png)
 
 | Key figure | Value |
