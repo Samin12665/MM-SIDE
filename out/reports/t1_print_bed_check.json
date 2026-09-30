@@ -1,352 +1,482 @@
-[
- {
-  "pn": "ARV-10-002",
-  "name": "LOWER_SKID",
-  "dims": [
-   226,
-   144,
-   2
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-10-001",
-  "name": "MAIN_CHASSIS",
-  "dims": [
-   230,
-   158,
-   55
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-10-005",
-  "name": "REAR_BUMPER_FRAME",
-  "dims": [
-   108,
-   120,
-   46
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-10-003",
-  "name": "REAR_SHOCK_TOWER_L",
-  "dims": [
-   31,
-   27,
-   56
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-10-004",
-  "name": "REAR_SHOCK_TOWER_R",
-  "dims": [
-   31,
-   27,
-   56
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-20-007",
-  "name": "BELLCRANK_L",
-  "dims": [
-   41,
-   15,
-   15
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-20-008",
-  "name": "BELLCRANK_R",
-  "dims": [
-   41,
-   15,
-   15
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-20-009",
-  "name": "DRAG_LINK",
-  "dims": [
-   10,
-   108,
-   3
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-20-001",
-  "name": "FRONT_BULKHEAD",
-  "dims": [
-   104,
-   124,
-   58
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-20-003",
-  "name": "FRONT_KNUCKLE_L",
-  "dims": [
-   39,
-   20,
-   22
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-20-004",
-  "name": "FRONT_KNUCKLE_R",
-  "dims": [
-   39,
-   20,
-   22
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-20-005",
-  "name": "FRONT_LOWER_ARM_L",
-  "dims": [
-   45,
-   73,
-   9
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-20-006",
-  "name": "FRONT_LOWER_ARM_R",
-  "dims": [
-   45,
-   73,
-   9
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-20-002",
-  "name": "FRONT_SHOCK_TOWER",
-  "dims": [
-   15,
-   176,
-   79
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-20-010",
-  "name": "SERVO_LINK",
-  "dims": [
-   40,
-   10,
-   3
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-30-003",
-  "name": "HEX_ADAPTER_L",
-  "dims": [
-   22,
-   14,
-   22
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-30-004",
-  "name": "HEX_ADAPTER_R",
-  "dims": [
-   22,
-   14,
-   22
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-30-001",
-  "name": "TRAILING_ARM_L",
-  "dims": [
-   151,
-   22,
-   52
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-30-002",
-  "name": "TRAILING_ARM_R",
-  "dims": [
-   151,
-   22,
-   52
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-40-001",
-  "name": "BATTERY_TUNNEL",
-  "dims": [
-   164,
-   152,
-   50
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-50-001",
-  "name": "TRAY_FRAME",
-  "dims": [
-   150,
-   132,
-   49
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-50-002",
-  "name": "TRAY_UPPER_DECK",
-  "dims": [
-   154,
-   152,
-   19
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-61-002",
-  "name": "FRONT_BUMPER",
-  "dims": [
-   27,
-   200,
-   54
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-61-001",
-  "name": "FRONT_SENSOR_FASCIA",
-  "dims": [
-   41,
-   124,
-   35
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-61-003",
-  "name": "REAR_BUMPER",
-  "dims": [
-   20,
-   172,
-   40
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-62-001",
-  "name": "BODY_MAIN_FRONT",
-  "dims": [
-   185,
-   224,
-   100
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-62-002",
-  "name": "BODY_MAIN_REAR",
-  "dims": [
-   245,
-   224,
-   100
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-63-001",
-  "name": "CENTER_SERVICE_PANEL",
-  "dims": [
-   159,
-   224,
-   32
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-64-001",
-  "name": "REAR_BATTERY_PANEL",
-  "dims": [
-   28,
-   88,
-   42
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-65-001",
-  "name": "CAMERA_POD",
-  "dims": [
-   60,
-   146,
-   47
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-65-002",
-  "name": "CAMERA_WINDOW",
-  "dims": [
-   2,
-   91,
-   26
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-66-001",
-  "name": "FENDER_FL",
-  "dims": [
-   153,
-   40,
-   30
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-66-002",
-  "name": "FENDER_FR",
-  "dims": [
-   153,
-   40,
-   30
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-66-003",
-  "name": "FENDER_RL",
-  "dims": [
-   153,
-   40,
-   30
-  ],
-  "fits": true
- },
- {
-  "pn": "ARV-66-004",
-  "name": "FENDER_RR",
-  "dims": [
-   153,
-   40,
-   30
-  ],
-  "fits": true
- }
-]
+{
+ "bed_mm": [
+  256,
+  256,
+  256
+ ],
+ "source": "exported STLs (V5), ASCII, units mm (rescaled x1000 from the Onshape export)",
+ "method": "axis-aligned bbox in vehicle frame (conservative; parts may be re-oriented for printing)",
+ "count": 42,
+ "all_fit": true,
+ "largest": [
+  "BODY_MAIN_REAR.stl 245 x 224 x 100",
+  "MAIN_CHASSIS.stl 230 x 158 x 55",
+  "LOWER_SKID.stl 226 x 144 x 2",
+  "BODY_MAIN_FRONT.stl 185.2 x 224 x 100"
+ ],
+ "parts": [
+  {
+   "studio": "62_BODY_MAIN",
+   "file": "BODY_MAIN_REAR.stl",
+   "triangles": 2636,
+   "bbox_mm": [
+    245,
+    224,
+    100
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "10_CHASSIS",
+   "file": "MAIN_CHASSIS.stl",
+   "triangles": 6194,
+   "bbox_mm": [
+    230,
+    158,
+    55
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "10_CHASSIS",
+   "file": "LOWER_SKID.stl",
+   "triangles": 1306,
+   "bbox_mm": [
+    226,
+    144,
+    2
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "62_BODY_MAIN",
+   "file": "BODY_MAIN_FRONT.stl",
+   "triangles": 2916,
+   "bbox_mm": [
+    185.2,
+    224,
+    100
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "63_CENTER_SERVICE_PANEL",
+   "file": "CENTER_SERVICE_PANEL.stl",
+   "triangles": 1238,
+   "bbox_mm": [
+    159.4,
+    224,
+    32
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "61_FRONT_FASCIA_BUMPERS",
+   "file": "FRONT_BUMPER.stl",
+   "triangles": 614,
+   "bbox_mm": [
+    27,
+    200,
+    54
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "20_FRONT_STEERING",
+   "file": "FRONT_SHOCK_TOWER.stl",
+   "triangles": 1256,
+   "bbox_mm": [
+    25.5,
+    176,
+    79
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "61_FRONT_FASCIA_BUMPERS",
+   "file": "REAR_BUMPER.stl",
+   "triangles": 534,
+   "bbox_mm": [
+    20,
+    172,
+    40
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "40_BATTERY_SYSTEM",
+   "file": "BATTERY_TUNNEL.stl",
+   "triangles": 1082,
+   "bbox_mm": [
+    164.5,
+    152,
+    49.5
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "50_ELECTRONICS_TRAY",
+   "file": "TRAY_UPPER_DECK.stl",
+   "triangles": 4474,
+   "bbox_mm": [
+    153.5,
+    152,
+    19
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "30_DRIVETRAIN",
+   "file": "TRAILING_ARM_L.stl",
+   "triangles": 1842,
+   "bbox_mm": [
+    151,
+    21.5,
+    52
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "30_DRIVETRAIN",
+   "file": "TRAILING_ARM_R.stl",
+   "triangles": 1842,
+   "bbox_mm": [
+    151,
+    21.5,
+    52
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "50_ELECTRONICS_TRAY",
+   "file": "TRAY_FRAME.stl",
+   "triangles": 3654,
+   "bbox_mm": [
+    150,
+    132,
+    49
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "65_CAMERA_POD",
+   "file": "CAMERA_POD.stl",
+   "triangles": 1124,
+   "bbox_mm": [
+    60,
+    146,
+    47.2
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "66_FENDERS",
+   "file": "FENDER_FL.stl",
+   "triangles": 356,
+   "bbox_mm": [
+    130,
+    40,
+    30
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "66_FENDERS",
+   "file": "FENDER_FR.stl",
+   "triangles": 356,
+   "bbox_mm": [
+    130,
+    40,
+    30
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "66_FENDERS",
+   "file": "FENDER_RL.stl",
+   "triangles": 356,
+   "bbox_mm": [
+    130,
+    40,
+    30
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "66_FENDERS",
+   "file": "FENDER_RR.stl",
+   "triangles": 356,
+   "bbox_mm": [
+    130,
+    40,
+    30
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "20_FRONT_STEERING",
+   "file": "FRONT_BULKHEAD.stl",
+   "triangles": 2288,
+   "bbox_mm": [
+    104,
+    124,
+    58
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "61_FRONT_FASCIA_BUMPERS",
+   "file": "FRONT_SENSOR_FASCIA.stl",
+   "triangles": 868,
+   "bbox_mm": [
+    41,
+    124,
+    35
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "10_CHASSIS",
+   "file": "REAR_BUMPER_FRAME.stl",
+   "triangles": 856,
+   "bbox_mm": [
+    108,
+    120,
+    46
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "20_FRONT_STEERING",
+   "file": "DRAG_LINK.stl",
+   "triangles": 340,
+   "bbox_mm": [
+    10,
+    107.8,
+    3
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "70_LIDAR_OPTION",
+   "file": "LIDAR_ADAPTER_PLATE.stl",
+   "triangles": 1100,
+   "bbox_mm": [
+    100,
+    76,
+    4
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "64_REAR_BATTERY_PANEL",
+   "file": "REAR_BATTERY_PANEL.stl",
+   "triangles": 238,
+   "bbox_mm": [
+    28.5,
+    88,
+    42
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "20_FRONT_STEERING",
+   "file": "FRONT_LOWER_ARM_L.stl",
+   "triangles": 336,
+   "bbox_mm": [
+    44.4,
+    73.3,
+    8.6
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "20_FRONT_STEERING",
+   "file": "FRONT_LOWER_ARM_R.stl",
+   "triangles": 336,
+   "bbox_mm": [
+    44.4,
+    73.3,
+    8.6
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "10_CHASSIS",
+   "file": "REAR_SHOCK_TOWER_L.stl",
+   "triangles": 382,
+   "bbox_mm": [
+    31,
+    27,
+    56.2
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "10_CHASSIS",
+   "file": "REAR_SHOCK_TOWER_R.stl",
+   "triangles": 380,
+   "bbox_mm": [
+    31,
+    27,
+    56.2
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "20_FRONT_STEERING",
+   "file": "FRONT_UPPER_ARM_L.stl",
+   "triangles": 234,
+   "bbox_mm": [
+    10.8,
+    51.3,
+    8.6
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "20_FRONT_STEERING",
+   "file": "FRONT_UPPER_ARM_R.stl",
+   "triangles": 234,
+   "bbox_mm": [
+    10.8,
+    51.3,
+    8.6
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "20_FRONT_STEERING",
+   "file": "BELLCRANK_L.stl",
+   "triangles": 480,
+   "bbox_mm": [
+    41.1,
+    14.7,
+    14.5
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "20_FRONT_STEERING",
+   "file": "BELLCRANK_R.stl",
+   "triangles": 480,
+   "bbox_mm": [
+    41.1,
+    14.7,
+    14.5
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "20_FRONT_STEERING",
+   "file": "SERVO_LINK.stl",
+   "triangles": 204,
+   "bbox_mm": [
+    40,
+    10,
+    3
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "20_FRONT_STEERING",
+   "file": "FRONT_KNUCKLE_L.stl",
+   "triangles": 798,
+   "bbox_mm": [
+    39.4,
+    19.6,
+    22.1
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "20_FRONT_STEERING",
+   "file": "FRONT_KNUCKLE_R.stl",
+   "triangles": 798,
+   "bbox_mm": [
+    39.4,
+    19.6,
+    22.1
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "30_DRIVETRAIN",
+   "file": "HEX_ADAPTER_L.stl",
+   "triangles": 424,
+   "bbox_mm": [
+    22,
+    13.5,
+    22
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "30_DRIVETRAIN",
+   "file": "HEX_ADAPTER_R.stl",
+   "triangles": 424,
+   "bbox_mm": [
+    22,
+    13.5,
+    22
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "55_WIRING",
+   "file": "CABLE_CLIP_1.stl",
+   "triangles": 140,
+   "bbox_mm": [
+    6,
+    11,
+    10
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "55_WIRING",
+   "file": "CABLE_CLIP_2.stl",
+   "triangles": 140,
+   "bbox_mm": [
+    6,
+    11,
+    10
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "55_WIRING",
+   "file": "CABLE_CLIP_4.stl",
+   "triangles": 152,
+   "bbox_mm": [
+    8.6,
+    10,
+    10.9
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "55_WIRING",
+   "file": "CABLE_CLIP_3.stl",
+   "triangles": 136,
+   "bbox_mm": [
+    6,
+    10,
+    8.9
+   ],
+   "fits_256": true
+  },
+  {
+   "studio": "55_WIRING",
+   "file": "CABLE_CLIP_5.stl",
+   "triangles": 136,
+   "bbox_mm": [
+    6,
+    10,
+    9.9
+   ],
+   "fits_256": true
+  }
+ ],
+ "note": "purchased items (PUR-*) excluded"
+}

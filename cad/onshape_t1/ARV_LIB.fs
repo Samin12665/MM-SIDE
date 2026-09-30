@@ -618,13 +618,13 @@ export function pack(P is map, g is map) returns map
     const lz = g.lowZ1;                                  // lower tray plate top (38)
     const dz = g.deckZ1;                                 // upper deck top (87)
     // lower tray level: power + motor driver (Y- = power side, Y+ = logic power)
-    k.MDD10A = [-16, 68, -66, -4, lz + 4, lz + 4 + 20];                  // Cytron MDD10A 84 x 62 x 20 on 4 mm stand-offs
+    k.MDD10A = [-16, 68.5, -66, -4, lz + 4, lz + 4 + 25];                // Cytron MDD10A 84.5 x 62 x 25 (datasheet) on 4 mm stand-offs
     k.DCDC19 = [-16, 44, 16, 66, lz + 1, lz + 1 + 22];                   // 19 V buck-boost 60 x 50 x 22
     k.FUSE = [48, 103, 26, 66, lz, lz + 25];                             // 2-way ATO fuse holder 55 x 40 x 25
     k.BUCK5 = [66, 101.6, -66, -27.9, lz + 4, lz + 4 + 10];              // 5 V 5 A buck 35.6 x 38.1
     k.BEC6 = [70, 95, -22, 18, lz + 4, lz + 4 + 12];                     // 6 V 5 A servo BEC 25 x 40
     // upper deck: compute
-    k.JETSON = [g.deckX1 - 103, g.deckX1, -45.25, 45.25, dz + 6, dz + 6 + 34.8];   // Orin Nano Super dev kit
+    k.JETSON = [g.deckX1 - 100, g.deckX1, -39.5, 39.5, dz + 6, dz + 6 + 21];       // Orin Nano Super dev kit 100 x 79 x 21 (NVIDIA)
     k.TEENSY = [g.deckX0 + 2, g.deckX0 + 52, -35, 35, dz + 5, dz + 5 + 18];         // Teensy 4.1 carrier 50 x 70
     k.IMU = [-20, 5.4, 46, 63.8, dz + 12, dz + 12 + 4];                  // BNO085 on plinth (near CG)
     k.RX = [g.deckX0 + 2, g.deckX0 + 42, -66, -44, dz + 2, dz + 2 + 10]; // SBUS receiver 40 x 22
@@ -1157,6 +1157,8 @@ function pMainChassis(context is Context, id is Id, P is map, g is map)
     for (var s in [1, -1])
         cax(context, B, "Y", [g.pivX - 22, s * HW, 64], 11, 10, false);
     wb(context, B, X1 - 4, X1 + 1, -15, 15, g.ZFT + 4, g.ZFT + 22, false);
+    // rear wall harness slot (motor leads + rear ToF), between the frame bolt bosses
+    wb(context, B, X0 - 1, X0 + T + 1, -14, 14, 54, 68, false);
     // passive ventilation slots (motor driver / DC-DC bay), low on both side walls
     for (var s in [1, -1])
         for (var i = 0; i < 5; i += 1)
@@ -1557,7 +1559,9 @@ function pFrontTower(context is Context, id is Id, P is map, g is map)
             pr(context, B, SIDE(), [[gx, 34], [gx + sg * 5, 34], [gx, 50]], -y1, -y0, true);
         }
         cax(context, B, "X", [t0 - 1.5, s * g.shockFY, g.shockFUpZ], 9, 3, true);
-        cax(context, B, "X", [t1 + 1.5, s * g.camberInY, g.kUpZ], 10, 3, true);
+        // upper A-arm clevis: the tower plate is the rear lug, bridge + front lug carry the X-axis hinge pin
+        wb(context, B, t1 - 0.01, t1 + 15.5, s * (g.camberInY - 5), s * (g.camberInY + 5), g.kUpZ + 5, g.kUpZ + 9, true);
+        wb(context, B, t1 + 11.8, t1 + 15.5, s * (g.camberInY - 5), s * (g.camberInY + 5), g.kUpZ - 6, g.kUpZ + 9, true);
     }
     stg(context, B);
     for (var s in [1, -1])
@@ -1565,7 +1569,7 @@ function pFrontTower(context is Context, id is Id, P is map, g is map)
         for (var lx in [t0 - 1.5, t1 + 1.5])
             hClr(context, B, [lx, s * 20, 29], [lx, s * 20, 35]);
         hIns(context, B, [t0 - 3, s * g.shockFY, g.shockFUpZ], [1, 0, 0], 6);
-        hIns(context, B, [t1 + 3, s * g.camberInY, g.kUpZ], [-1, 0, 0], 6);
+        cyl(context, B, [t0 - 1, s * g.camberInY, g.kUpZ], [t1 + 16.5, s * g.camberInY, g.kUpZ], 1.5, false);
     }
     // body nose locating pin holes (Ø4.2 x 8) in the top edge
     for (var y in [-30, 30])
@@ -1573,7 +1577,7 @@ function pFrontTower(context is Context, id is Id, P is map, g is map)
     wb(context, B, t0 - 1, t1 + 1, -8, 8, 56, top - 14, false);
     for (var y in [-44, 44])
         wb(context, B, t0 - 1, t1 + 1, y - 8, y + 8, 76, top - 12, false);
-    fin(context, B, "FRONT_SHOCK_TOWER", "ARV-20-002", "Front shock tower: shock ball studs (rearward) + camber-link studs (forward), 4x M3 into bulkhead, body-nose locating pins. PA-CF.", ArvMat.PACF);
+    fin(context, B, "FRONT_SHOCK_TOWER", "ARV-20-002", "Front shock tower: shock ball studs (rearward), upper A-arm clevises with M3x25 hinge pins, 4x M3 into bulkhead, body-nose locating pins. PA-CF.", ArvMat.PACF);
     var n = 0;
     for (var s in [1, -1])
     {
@@ -1583,7 +1587,7 @@ function pFrontTower(context is Context, id is Id, P is map, g is map)
             n += 1;
         }
         insert(context, id + ("a" ~ n), [t0 - 3, s * g.shockFY, g.shockFUpZ], [1, 0, 0]);
-        insert(context, id + ("c" ~ n), [t1 + 3, s * g.camberInY, g.kUpZ], [-1, 0, 0]);
+        screw(context, id + ("c" ~ n), [t1 + 15.5, s * g.camberInY, g.kUpZ], [-1, 0, 0], 25, 3, false);
         n += 1;
     }
 }
@@ -1781,6 +1785,61 @@ function shockBody(context is Context, id is Id, lo is array, up is array, name 
     fin(context, B, name, pn, "1/10 aluminium oil shock 80 mm eye-to-eye (ball ends), 22 mm stroke", ArvMat.ALU);
 }
 
+// oil shock split into the two parts that stroke against each other (body + upper eye / rod + lower eye)
+function shockParts(context is Context, id is Id, lo is array, up is array, tag is string, linkB is string, linkR is string)
+{
+    const d = normalize(pt(up) - pt(lo));
+    const L = norm(pt(up) - pt(lo)) / millimeter;
+    const bl = 0.58 * L;
+    trace(context, "shock " ~ tag);
+    link(context, linkB);
+    var B = bld(id + "b");
+    cyl(context, B, arr(pt(up) - d * (bl + 4) * millimeter), arr(pt(up) - d * 1 * millimeter), 8, true);
+    cyl(context, B, arr(pt(up) - d * 2.4 * millimeter), arr(pt(up) + d * 2.4 * millimeter), 3.4, true);
+    stg(context, B);
+    cyl(context, B, arr(pt(up) - d * (bl + 4.1) * millimeter), arr(pt(up) - d * (bl + 4 - 30) * millimeter), 1.7, false);
+    fin(context, B, "SHOCK_BODY_" ~ tag, "PUR-SUS-SHOCK-80", "1/10 aluminium oil shock 80 mm eye-to-eye, 22 mm stroke: body, spring and upper ball end", ArvMat.ALU);
+    link(context, linkR);
+    var R = bld(id + "r");
+    cyl(context, R, arr(pt(lo) + d * 1 * millimeter), arr(pt(up) - d * (bl + 4 - 24) * millimeter), 1.5, true);
+    cyl(context, R, arr(pt(lo) - d * 2.4 * millimeter), arr(pt(lo) + d * 2.4 * millimeter), 3.4, true);
+    fin(context, R, "SHOCK_ROD_" ~ tag, "PUR-SUS-SHOCK-80-ROD", "Shock piston rod + lower ball end (supplied with PUR-SUS-SHOCK-80)", ArvMat.STEEL);
+}
+
+// purchased M3 ball end: threaded body from the arm tip to the captured ball on the knuckle stud
+function ballEnd(context is Context, id is Id, a is array, b is array, name is string)
+{
+    var B = bld(id);
+    const d = normalize(pt(b) - pt(a));
+    cyl(context, B, a, arr(pt(b) - d * 2 * millimeter), 3, true);
+    cyl(context, B, arr(pt(b) - d * 3.4 * millimeter), arr(pt(b) + d * 3.4 * millimeter), 3.6, true);
+    fin(context, B, name, "PUR-STR-BALLEND-M3", "M3 steel ball end with 6.8 mm ball stud (knuckle side)", ArvMat.STEEL);
+}
+
+// printed upper A-arm (replaces the ARV-1 single camber link: determinate double wishbone, same 57 mm geometry)
+function pUpperArm(context is Context, id is Id, P is map, g is map, s is number)
+{
+    var B = bld(id);
+    const ub = arr(casterT(P, g) * v(g.xF, g.KY, g.kUpZ));
+    const tipY = g.KY - 10;
+    const HY = g.camberInY;
+    const z0 = g.kUpZ - 4;
+    const z1 = g.kUpZ + 4;
+    const xi0 = g.towerF1 + 0.5;
+    const xi1 = g.towerF1 + 11.3;
+    trace(context, "upper arm");
+    pr(context, B, WCS(), [[xi0, HY], [xi1, HY], [ub[0] + 6, tipY - 6], [ub[0] + 5, tipY], [max(ub[0] - 5, xi0 + 0.3), tipY], [xi0, HY + 9]], z0, z1, true);
+    cyl(context, B, [xi0, HY, g.kUpZ], [xi1, HY, g.kUpZ], 4.3, true);
+    stg(context, B);
+    hIns(context, B, [ub[0], tipY, ub[2]], [0, -1, 0], 6);
+    cyl(context, B, [xi0 - 1, HY, g.kUpZ], [xi1 + 1, HY, g.kUpZ], 1.6, false);
+    pr(context, B, WCS(), [[xi0 + 3, HY + 6], [xi1 - 2, HY + 6], [ub[0], tipY - 14]], z0 - 1, z1 + 1, false);
+    stg(context, B);
+    if (s < 0)
+        opTransform(context, id + "mir", { "bodies" : posQ(B), "transform" : mirrorAcross(plane(v(0, 0, 0), Y)) });
+    fin(context, B, s > 0 ? "FRONT_UPPER_ARM_L" : "FRONT_UPPER_ARM_R", s > 0 ? "ARV-20-011" : "ARV-20-012", "Printed upper A-arm on an M3x25 hinge pin in the shock-tower clevis; M3 ball end captures the knuckle upper ball (57 mm effective length, ARV-1 camber curve). PA-CF 100%.", ArvMat.PACF);
+}
+
 // rugged off-road tyre + rim at wheel centre c, axis along Y, inner face toward sign -s
 export function wheel(context is Context, id is Id, P is map, g is map, c is array, s is number, tag is string)
 {
@@ -1851,8 +1910,10 @@ function buildFront(context is Context, id is Id, P is map, g is map, theta is n
             ["slink", function(i) { pServoLink(context, i, P, g, theta); }, "LNK_SERVO_LINK"],
             ["servo", function(i) { pServo(context, i, P, g); }, "LNK_FRONT_FRAME"],
             ["horn", function(i) { pServoHorn(context, i, P, g, theta); }, "LNK_SERVO_HORN"],
-            ["arml", function(i) { pLowerArm(context, i, P, g, 1); }, "LNK_FRONT_FRAME"],
-            ["armr", function(i) { pLowerArm(context, i, P, g, -1); }, "LNK_FRONT_FRAME"]];
+            ["arml", function(i) { pLowerArm(context, i, P, g, 1); }, "LNK_ARM_L"],
+            ["armr", function(i) { pLowerArm(context, i, P, g, -1); }, "LNK_ARM_R"],
+            ["uarml", function(i) { pUpperArm(context, i, P, g, 1); }, "LNK_UPPER_ARM_L"],
+            ["uarmr", function(i) { pUpperArm(context, i, P, g, -1); }, "LNK_UPPER_ARM_R"]];
     for (var p in parts)
         try
         {
@@ -1906,12 +1967,14 @@ function buildFront(context is Context, id is Id, P is map, g is map, theta is n
             const tip = arr(Tst * pt(armTip0(P, g, s)));
             link(context, "LNK_TIE_ROD_" ~ t);
             rodLink(context, cid + "tie", tip, crankBall(P, g, s, theta), "TIE_ROD_" ~ t, "PUR-STR-TIEROD-M3", "M3 steel turnbuckle + 2 ball ends, set to " ~ round(tieLen(P, g, s) * 10) / 10 ~ " mm ball-to-ball");
-            // camber link: steered upper ball -> tower stud
-            const ub = arr(Tst * (casterT(P, g) * v(g.xF, s * g.KY, g.kUpZ)));
-            link(context, "LNK_CAMBER_LINK_" ~ t);
-            rodLink(context, cid + "cam", ub, [g.towerF1 + 7.5, s * g.camberInY, g.kUpZ], "CAMBER_LINK_" ~ t, "PUR-STR-CAMBER-M3", "M3 turnbuckle camber link, 57 mm ball-to-ball");
-            link(context, "LNK_FRONT_FRAME");
-            shockBody(context, cid + "shk", [g.shockFX, s * g.shockFY, g.kLowZ + 4 + 3.4], [g.towerF0 - 12, s * g.shockFY, g.shockFUpZ], "SHOCK_F" ~ t, "PUR-SUS-SHOCK-80");
+            // purchased M3 ball ends: lower on the A-arm, upper on the upper A-arm (balls on the kingpin line)
+            const lb = arr(casterT(P, g) * v(g.xF, s * g.KY, g.kLowZ));
+            const ub = arr(casterT(P, g) * v(g.xF, s * g.KY, g.kUpZ));
+            link(context, "LNK_ARM_" ~ t);
+            ballEnd(context, cid + "bel", [lb[0], s * (g.KY - 10), lb[2]], lb, "BALL_END_LOWER_" ~ t);
+            link(context, "LNK_UPPER_ARM_" ~ t);
+            ballEnd(context, cid + "beu", [ub[0], s * (g.KY - 10), ub[2]], ub, "BALL_END_UPPER_" ~ t);
+            shockParts(context, cid + "shk", [g.shockFX, s * g.shockFY, g.kLowZ + 4 + 3.4], [g.towerF0 - 12, s * g.shockFY, g.shockFUpZ], "F" ~ t, "LNK_SHOCKB_F" ~ t, "LNK_SHOCKR_F" ~ t);
         }
         catch (e)
         {
@@ -2015,10 +2078,10 @@ function pGearmotor(context is Context, id is Id, P is map, g is map, s is numbe
 {
     var B = bld(id);
     const FY = g.faceY;
-    cyl(context, B, [g.xR, s * (FY - 82), g.zA], [g.xR, s * FY, g.zA], 18.5, true);
+    cyl(context, B, [g.xR, s * (FY - 80.5), g.zA], [g.xR, s * FY, g.zA], 18.5, true);
     cyl(context, B, [g.xR, s * FY, g.zA], [g.xR, s * (FY + 4), g.zA], 6, true);
-    cyl(context, B, [g.xR, s * FY, g.zA], [g.xR, s * (FY + 22), g.zA], 3, true);
-    fin(context, B, s > 0 ? "GEARMOTOR_37D_L" : "GEARMOTOR_37D_R", "PUR-MOT-POLOLU-4751", "Pololu 37D 19:1 12 V gearmotor with 64 CPR encoder (#4751): D37 x 82, 6 mm D-shaft", ArvMat.MOTOR);
+    cyl(context, B, [g.xR, s * FY, g.zA], [g.xR, s * (FY + 16), g.zA], 3, true);
+    fin(context, B, s > 0 ? "GEARMOTOR_37D_L" : "GEARMOTOR_37D_R", "PUR-MOT-POLOLU-4751", "Pololu 37D 19:1 12 V gearmotor with 64 CPR encoder (#4751): D37 x 68 + 12.5 encoder, 6 x 16 mm D-shaft, 6x M3 on a 31 mm hexagon", ArvMat.MOTOR);
 }
 
 function pMotorHub(context is Context, id is Id, P is map, g is map, s is number)
@@ -2067,7 +2130,7 @@ function buildDrive(context is Context, id is Id, P is map, g is map)
                 ["hub", function(i) { pMotorHub(context, i, P, g, s); }, "LNK_WHEEL_R" ~ t],
                 ["hex", function(i) { pHexAdapter(context, i, P, g, s); }, "LNK_WHEEL_R" ~ t],
                 ["whl", function(i) { wheel(context, i, P, g, [g.xR, s * g.yW, g.zA], s, "R" ~ t); }, "LNK_WHEEL_R" ~ t],
-                ["shk", function(i) { shockBody(context, i, [g.shockRLowX, s * g.shockRY, g.shockRLowZ], [g.towerR0 - 9 - 3.4, s * g.shockRY, g.shockRUpZ], "SHOCK_R" ~ t, "PUR-SUS-SHOCK-80"); }, "LNK_REAR_SHOCK_" ~ t]];
+                ["shk", function(i) { shockParts(context, i, [g.shockRLowX, s * g.shockRY, g.shockRLowZ], [g.towerR0 - 9 - 3.4, s * g.shockRY, g.shockRUpZ], "R" ~ t, "LNK_SHOCKB_R" ~ t, "LNK_SHOCKR_R" ~ t); }, "LNK_SHOCKB_R" ~ t]];
         for (var p in parts)
             try
             {
@@ -2158,7 +2221,7 @@ function pBatteryPack(context is Context, id is Id, P is map, g is map)
     fin(context, B, "BATTERY_3S_5000", "PUR-PWR-LIPO-3S5000", "3S 11.1 V 5000 mAh hard-case LiPo, XT60, leads toward the rear (max 139 x 47 x 37)", ArvMat.LIPO);
     // XT60 pair in the connector bay + foam pads
     var C = bld(id + "xt");
-    wb(context, C, b[0] - 16, b[0] - 8, -10, 6, b[4] + 8, b[4] + 24, true);
+    wb(context, C, b[0] - 16, b[0] - 8, -31, -21, b[4] + 8, b[4] + 24, true);
     fin(context, C, "XT60_PAIR", "PUR-PWR-XT60", "XT60 male/female pair (battery lead to vehicle pigtail)", ArvMat.PETG);
     var F = bld(id + "fm");
     wb(context, F, b[1], g.tunX1, -15, 15, b[4] + 5, b[5] - 5, true);
@@ -2245,7 +2308,7 @@ function pTrayDeck(context is Context, id is Id, P is map, g is map)
         wb(context, B, x0 + 6, x1 - 6, y - 1.2, y + 1.2, Z0 - 4, Z0, true);
     for (var x in [-20, 20, 60, 100])
         wb(context, B, x - 1.2, x + 1.2, -58, 58, Z0 - 4, Z0, true);
-    boardBosses(context, B, [k.JETSON[0] + 8.5, k.JETSON[1] - 8.5, -29, 29], Z1, k.JETSON[4] - Z1, 0);
+    boardBosses(context, B, [k.JETSON[0] + 7, k.JETSON[1] - 7, -29, 29], Z1, k.JETSON[4] - Z1, 0);
     boardBosses(context, B, k.TEENSY, Z1, k.TEENSY[4] - Z1, 2);
     // IMU plinth (solid, rigid, near CG)
     wb(context, B, k.IMU[0] - 3, k.IMU[1] + 3, k.IMU[2] - 3, k.IMU[3] + 3, Z1, k.IMU[4], true);
@@ -2258,7 +2321,7 @@ function pTrayDeck(context is Context, id is Id, P is map, g is map)
     {
         hClr(context, B, [p[0], p[1], Z0 - 5], [p[0], p[1], Z1 + 1]);
     }
-    boardHoles(context, B, [k.JETSON[0] + 8.5, k.JETSON[1] - 8.5, -29, 29], Z1, k.JETSON[4] - Z1, 0);
+    boardHoles(context, B, [k.JETSON[0] + 7, k.JETSON[1] - 7, -29, 29], Z1, k.JETSON[4] - Z1, 0);
     boardHoles(context, B, k.TEENSY, Z1, k.TEENSY[4] - Z1, 2);
     for (var cx in [k.IMU[0] + 2.55, k.IMU[1] - 2.55])
         for (var cyy in [k.IMU[2] + 2.55, k.IMU[3] - 2.55])
@@ -2300,8 +2363,8 @@ function pJetson(context is Context, id is Id, P is map, g is map)
     const k = pack(P, g);
     const b = k.JETSON;
     var B = bld(id);
-    wb(context, B, b[0], b[1], b[2], b[3], b[4], b[4] + 21.6, true);
-    wb(context, B, (b[0] + b[1]) / 2 - 35, (b[0] + b[1]) / 2 + 35, -22.5, 22.5, b[4] + 21.6, b[5], true);
+    wb(context, B, b[0], b[1], b[2], b[3], b[4], b[4] + 6, true);
+    wb(context, B, (b[0] + b[1]) / 2 - 35, (b[0] + b[1]) / 2 + 35, -30, 30, b[4] + 6, b[5], true);
     fin(context, B, "JETSON_ORIN_NANO_SUPER", "PUR-CMP-JETSON-ORIN-NANO", "NVIDIA Jetson Orin Nano Super Developer Kit (carrier + module + fan heatsink)", ArvMat.PCB);
 }
 
@@ -2617,6 +2680,9 @@ function mainBodyFeatures(context is Context, B is map, P is map, g is map)
         for (var s in [1, -1])
             for (var f in fenderScrews(P, g))
                 cax(context, B, "Y", [xc + f[0], s * (g.ys - t - 3), f[1]], 9, 6.02, true);
+    // LiDAR-option roof bosses
+    for (var p in lidarScrews(P, g))
+        cyl(context, B, [p[0], p[1], g.zRoof - 12], [p[0], p[1], g.zRoof - 0.5], 4.5, true);
     // camera-pod roof bosses
     for (var p in camPodScrews(P, g))
         cyl(context, B, [p[0], p[1], roofZ(P, g, p[0]) - 12], [p[0], p[1], roofZ(P, g, p[0]) - 0.5], 4.5, true);
@@ -2645,6 +2711,14 @@ function mainBodyFeatures(context is Context, B is map, P is map, g is map)
             hClr(context, B, [g.xNose - 15, s * 63, z], [g.xNose - 15, s * (62 - t - 1), z]);
     for (var p in camPodScrews(P, g))
         hIns(context, B, [p[0], p[1], roofZ(P, g, p[0])], [0, 0, -1], 6);
+    // bay front-wall grommet holes (front ToF harness, camera USB + CSI) and LiDAR-option roof holes
+    cax(context, B, "X", [bayX1(g) - 1.2, -48, 92], 10, 6, false);
+    cax(context, B, "X", [g.towerF1 + 17.2, -46, 91], 10, 6, false);
+    cax(context, B, "X", [bayX1(g) - 1.2, -3, 121.5], 18, 6, false);
+    const lp = lidarPos(P, g);
+    cax(context, B, "Z", [lp[0], 0, g.zRoof - 1], 12, 6, false);
+    for (var p in lidarScrews(P, g))
+        hIns(context, B, [p[0], p[1], g.zRoof], [0, 0, -1], 6);
     // camera cable pass-through under the pod
     cyl(context, B, [P.cameraX - 30, 0, roofZ(P, g, P.cameraX - 30) - 8], [P.cameraX - 30, 0, roofZ(P, g, P.cameraX - 30) + 8], 9, false);
     // E-stop 22.3 mm panel hole
@@ -2750,6 +2824,11 @@ function buildBodyMain(context is Context, id is Id, P is map, g is map)
     for (var p in camPodScrews(P, g))
     {
         insert(context, id + ("ci" ~ n), [p[0], p[1], roofZ(P, g, p[0])], [0, 0, -1]);
+        n += 1;
+    }
+    for (var p in lidarScrews(P, g))
+    {
+        insert(context, id + ("li" ~ n), [p[0], p[1], g.zRoof], [0, 0, -1]);
         n += 1;
     }
     // E-stop (purchased, safety: stays exposed on the rear deck)
@@ -3025,6 +3104,7 @@ function buildFascia(context is Context, id is Id, P is map, g is map)
         const cs = coordSystem(v(rp[0], rp[1], rp[2]), Y, vector(-1, 0, 0));
         bx(context, Rb, cs, -5, 5, -3, 3, -3.1, 1, false);
         bx(context, Rb, cs, -7, 7, -9.5, 9.5, -12, -3.0, false);
+        cax(context, Rb, "X", [xe - 6, 0, P.rearSensorZ], 6, 14, false);
         fin(context, Rb, "REAR_BUMPER", "ARV-61-003", "Rear bumper, TPU 95A, 2x M3x16 into the rear-frame cross bar inserts; recessed rear VL53L1X.", ArvMat.TPU);
         var n = 0;
         for (var y in [-40, 40])
@@ -3173,6 +3253,8 @@ function pFender(context is Context, id is Id, P is map, g is map, xc is number,
     {
         hClr(context, B, [xc + f[0], g.ys - 1, f[1]], [xc + f[0], g.ys + 4, f[1]]);
     }
+    // nothing below the hull underside inside the tyre band (full-bump clearance), only the outer skirt drops
+    wb(context, B, xc - L - 1, xc + L + 1, g.ys - 1, P.fenderWidth - 2.5 - 0.01, g.zHB - 25, g.zHB + 0.5, false);
     // tactical detail: stepped edge light-bar recess on the outer face (functional reflector / LED strip)
     wb(context, B, xc - 30, xc + 30, P.fenderWidth - 1.2, P.fenderWidth + 1, g.zHB - 6, g.zHB - 2, false);
     stg(context, B);
@@ -3230,12 +3312,16 @@ export enum ArvStudio
     annotation { "Name" : "65 Camera pod" }
     CAMERA_POD,
     annotation { "Name" : "66 Fenders" }
-    FENDERS
+    FENDERS,
+    annotation { "Name" : "55 Wiring" }
+    WIRING,
+    annotation { "Name" : "70 LiDAR option" }
+    LIDAR
 }
 
 function isBody(s is ArvStudio) returns boolean
 {
-    return s == ArvStudio.FASCIA || s == ArvStudio.BODY_MAIN || s == ArvStudio.CENTER_PANEL || s == ArvStudio.BATTERY_PANEL || s == ArvStudio.CAMERA_POD || s == ArvStudio.FENDERS;
+    return s == ArvStudio.FASCIA || s == ArvStudio.BODY_MAIN || s == ArvStudio.CENTER_PANEL || s == ArvStudio.BATTERY_PANEL || s == ArvStudio.CAMERA_POD || s == ArvStudio.FENDERS || s == ArvStudio.LIDAR;
 }
 
 export function buildStudio(context is Context, id is Id, s is ArvStudio, P is map, g is map, steer is number)
@@ -3262,6 +3348,10 @@ export function buildStudio(context is Context, id is Id, s is ArvStudio, P is m
         buildCameraPod(context, id, P, g);
     else if (s == ArvStudio.FENDERS)
         buildFenders(context, id, P, g);
+    else if (s == ArvStudio.WIRING)
+        buildWiring(context, id, P, g);
+    else if (s == ArvStudio.LIDAR)
+        buildLidar(context, id, P, g);
     else
         throw regenError("ARV: studio " ~ toString(s) ~ " not implemented yet");
 }
@@ -3292,6 +3382,16 @@ export const arvStudio = defineFeature(function(context is Context, id is Id, de
             recordError(context, id, toString(definition.studio), e);
         }
         setVariable(context, "arvStatus", toString(definition.studio) ~ " built");
+        var err = "";
+        try silent
+        {
+            err = getVariable(context, "arvError");
+        }
+        if (err != "")
+        {
+            fCuboid(context, id + "errmk", { "corner1" : v(0, 0, -300), "corner2" : v(1, 1, -299) });
+            setProperty(context, { "entities" : qCreatedBy(id + "errmk", EntityType.BODY), "propertyType" : PropertyType.NAME, "value" : "BUILD ERRORS " ~ err });
+        }
         // hide the derived master reference sketches' clutter is left to the user; they are construction only
     });
 
@@ -3335,15 +3435,27 @@ export function jointTable(P is map, g is map) returns array
         const dp = crankDragPin(P, g, s, 0);
         j = append(j, ["CRANK_" ~ t, "LNK_FRONT_FRAME", "LNK_CRANK_" ~ t, "REVOLUTE", [g.crankX, s * g.crankY, g.crankZ], Z]);
         j = append(j, ["DRAG_" ~ t, "LNK_CRANK_" ~ t, "LNK_DRAG_LINK", "REVOLUTE", [dp[0], dp[1], g.dragZ0], Z]);
-        const kl = kingpinLine(P, g, s);
-        j = append(j, ["KINGPIN_" ~ t, "LNK_FRONT_FRAME", "LNK_KNUCKLE_" ~ t, "REVOLUTE", arr(kl.origin), kl.direction]);
+        const lb = arr(casterT(P, g) * v(g.xF, s * g.KY, g.kLowZ));
+        const ub = arr(casterT(P, g) * v(g.xF, s * g.KY, g.kUpZ));
+        j = append(j, ["ARM_HINGE_" ~ t, "LNK_FRONT_FRAME", "LNK_ARM_" ~ t, "REVOLUTE", [g.xF, s * g.hingeY, g.kLowZ], X]);
+        j = append(j, ["UARM_HINGE_" ~ t, "LNK_FRONT_FRAME", "LNK_UPPER_ARM_" ~ t, "REVOLUTE", [g.xF, s * g.camberInY, g.kUpZ], X]);
+        j = append(j, ["LBALL_" ~ t, "LNK_ARM_" ~ t, "LNK_KNUCKLE_" ~ t, "BALL", lb, Z]);
+        j = append(j, ["UBALL_" ~ t, "LNK_UPPER_ARM_" ~ t, "LNK_KNUCKLE_" ~ t, "BALL", ub, Z]);
         j = append(j, ["WHEEL_F" ~ t, "LNK_KNUCKLE_" ~ t, "LNK_WHEEL_F" ~ t, "REVOLUTE", [g.xF, s * g.yW, g.zA], Y]);
         j = append(j, ["TIE_OUT_" ~ t, "LNK_KNUCKLE_" ~ t, "LNK_TIE_ROD_" ~ t, "BALL", armTip0(P, g, s), Z]);
         j = append(j, ["TIE_IN_" ~ t, "LNK_CRANK_" ~ t, "LNK_TIE_ROD_" ~ t, "BALL", crankBall(P, g, s, 0), Z]);
-        const ub = arr(casterT(P, g) * v(g.xF, s * g.KY, g.kUpZ));
-        j = append(j, ["CAMBER_OUT_" ~ t, "LNK_KNUCKLE_" ~ t, "LNK_CAMBER_LINK_" ~ t, "BALL", ub, Z]);
-        j = append(j, ["CAMBER_IN_" ~ t, "LNK_FRONT_FRAME", "LNK_CAMBER_LINK_" ~ t, "BALL", [g.towerF1 + 7.5, s * g.camberInY, g.kUpZ], Z]);
+        const fsl = [g.shockFX, s * g.shockFY, g.kLowZ + 4 + 3.4];
+        const fsu = [g.towerF0 - 12, s * g.shockFY, g.shockFUpZ];
+        j = append(j, ["FSHOCK_TOP_" ~ t, "LNK_FRONT_FRAME", "LNK_SHOCKB_F" ~ t, "BALL", fsu, Z]);
+        j = append(j, ["FSHOCK_BOT_" ~ t, "LNK_ARM_" ~ t, "LNK_SHOCKR_F" ~ t, "BALL", fsl, Z]);
+        j = append(j, ["FSHOCK_SLIDE_" ~ t, "LNK_SHOCKB_F" ~ t, "LNK_SHOCKR_F" ~ t, "CYLINDRICAL", [(fsl[0] + fsu[0]) / 2, (fsl[1] + fsu[1]) / 2, (fsl[2] + fsu[2]) / 2], pt(fsu) - pt(fsl)]);
+        j = append(j, ["RARM_PIVOT_" ~ t, "LNK_CHASSIS", "LNK_REAR_ARM_" ~ t, "REVOLUTE", [g.pivX, s * (g.HW + 10), g.pivZ], Y]);
         j = append(j, ["WHEEL_R" ~ t, "LNK_REAR_ARM_" ~ t, "LNK_WHEEL_R" ~ t, "REVOLUTE", [g.xR, s * g.yW, g.zA], Y]);
+        const rsl = [g.shockRLowX, s * g.shockRY, g.shockRLowZ];
+        const rsu = [g.towerR0 - 9 - 3.4, s * g.shockRY, g.shockRUpZ];
+        j = append(j, ["RSHOCK_TOP_" ~ t, "LNK_CHASSIS", "LNK_SHOCKB_R" ~ t, "BALL", rsu, Z]);
+        j = append(j, ["RSHOCK_BOT_" ~ t, "LNK_REAR_ARM_" ~ t, "LNK_SHOCKR_R" ~ t, "BALL", rsl, Z]);
+        j = append(j, ["RSHOCK_SLIDE_" ~ t, "LNK_SHOCKB_R" ~ t, "LNK_SHOCKR_R" ~ t, "CYLINDRICAL", [(rsl[0] + rsu[0]) / 2, (rsl[1] + rsu[1]) / 2, (rsl[2] + rsu[2]) / 2], pt(rsu) - pt(rsl)]);
     }
     const k = pack(P, g);
     j = append(j, ["BATTERY_SLIDE", "LNK_BATTERY_TUNNEL", "LNK_BATTERY", "SLIDER", [(k.BATTERY[0] + k.BATTERY[1]) / 2, 0, (k.BATTERY[4] + k.BATTERY[5]) / 2], X]);
@@ -3454,9 +3566,12 @@ export function linkPrimary() returns map
     return { "LNK_CHASSIS" : "MAIN_CHASSIS", "LNK_FRONT_FRAME" : "FRONT_BULKHEAD", "LNK_CRANK_L" : "BELLCRANK_L", "LNK_CRANK_R" : "BELLCRANK_R",
             "LNK_DRAG_LINK" : "DRAG_LINK", "LNK_SERVO_LINK" : "SERVO_LINK", "LNK_SERVO_HORN" : "SERVO_HORN_25T",
             "LNK_KNUCKLE_L" : "FRONT_KNUCKLE_L", "LNK_KNUCKLE_R" : "FRONT_KNUCKLE_R", "LNK_WHEEL_FL" : "RIM_FL", "LNK_WHEEL_FR" : "RIM_FR",
-            "LNK_TIE_ROD_L" : "TIE_ROD_L", "LNK_TIE_ROD_R" : "TIE_ROD_R", "LNK_CAMBER_LINK_L" : "CAMBER_LINK_L", "LNK_CAMBER_LINK_R" : "CAMBER_LINK_R",
+            "LNK_TIE_ROD_L" : "TIE_ROD_L", "LNK_TIE_ROD_R" : "TIE_ROD_R", "LNK_ARM_L" : "FRONT_LOWER_ARM_L", "LNK_ARM_R" : "FRONT_LOWER_ARM_R",
+            "LNK_UPPER_ARM_L" : "FRONT_UPPER_ARM_L", "LNK_UPPER_ARM_R" : "FRONT_UPPER_ARM_R", "LNK_SHOCKB_FL" : "SHOCK_BODY_FL", "LNK_SHOCKB_FR" : "SHOCK_BODY_FR",
+            "LNK_SHOCKR_FL" : "SHOCK_ROD_FL", "LNK_SHOCKR_FR" : "SHOCK_ROD_FR", "LNK_SHOCKB_RL" : "SHOCK_BODY_RL", "LNK_SHOCKB_RR" : "SHOCK_BODY_RR",
+            "LNK_SHOCKR_RL" : "SHOCK_ROD_RL", "LNK_SHOCKR_RR" : "SHOCK_ROD_RR", "LNK_WIRING" : "HARNESS_MAIN_POWER", "LNK_LIDAR" : "LIDAR_ADAPTER_PLATE",
             "LNK_REAR_ARM_L" : "TRAILING_ARM_L", "LNK_REAR_ARM_R" : "TRAILING_ARM_R", "LNK_WHEEL_RL" : "RIM_RL", "LNK_WHEEL_RR" : "RIM_RR",
-            "LNK_REAR_SHOCK_L" : "SHOCK_RL", "LNK_REAR_SHOCK_R" : "SHOCK_RR", "LNK_BATTERY_TUNNEL" : "BATTERY_TUNNEL", "LNK_BATTERY" : "BATTERY_3S_5000",
+            "LNK_BATTERY_TUNNEL" : "BATTERY_TUNNEL", "LNK_BATTERY" : "BATTERY_3S_5000",
             "LNK_ELECTRONICS_TRAY" : "TRAY_UPPER_DECK", "LNK_FASCIA" : "FRONT_SENSOR_FASCIA", "LNK_FRONT_BUMPER" : "FRONT_BUMPER", "LNK_REAR_BUMPER" : "REAR_BUMPER",
             "LNK_BODY_MAIN" : "BODY_MAIN_REAR", "LNK_CENTER_PANEL" : "CENTER_SERVICE_PANEL", "LNK_BATTERY_PANEL" : "REAR_BATTERY_PANEL", "LNK_CAMERA_POD" : "CAMERA_POD",
             "LNK_FENDER_FL" : "FENDER_FL", "LNK_FENDER_FR" : "FENDER_FR", "LNK_FENDER_RL" : "FENDER_RL", "LNK_FENDER_RR" : "FENDER_RR" };
@@ -3615,6 +3730,8 @@ export const arvAudit = defineFeature(function(context is Context, id is Id, def
         isAngle(definition.steer, { (degree) : [-40, 0, 40] } as AngleBoundSpec);
         annotation { "Name" : "Include purchased hardware", "Default" : false }
         definition.hardware is boolean;
+        annotation { "Name" : "Wheel bump travel (front corners + rear wheels raised)" }
+        isLength(definition.bump, { (millimeter) : [0, 0, 30] } as LengthBoundSpec);
     }
     {
         const P = derivedP(context, "arvMaster");
@@ -3633,9 +3750,18 @@ export const arvAudit = defineFeature(function(context is Context, id is Id, def
         buildFascia(context, id + "i", P, g);
         buildCameraPod(context, id + "j", P, g);
         buildFenders(context, id + "k", P, g);
+        buildWiring(context, id + "l", P, g);
+        buildLidar(context, id + "m", P, g);
         const st = getVariable(context, "arvSteer");
         // classify bodies
-        const moving = ["LNK_KNUCKLE_L", "LNK_KNUCKLE_R", "LNK_WHEEL_FL", "LNK_WHEEL_FR", "LNK_TIE_ROD_L", "LNK_TIE_ROD_R", "LNK_CAMBER_LINK_L", "LNK_CAMBER_LINK_R"];
+        const bump = definition.bump / millimeter;
+        var moving = bump > 0 ? ["LNK_KNUCKLE_L", "LNK_KNUCKLE_R", "LNK_WHEEL_FL", "LNK_WHEEL_FR"] : ["LNK_KNUCKLE_L", "LNK_KNUCKLE_R", "LNK_WHEEL_FL", "LNK_WHEEL_FR", "LNK_TIE_ROD_L", "LNK_TIE_ROD_R"];
+        var ignore = ["LNK_CRANK_L", "LNK_CRANK_R", "LNK_DRAG_LINK", "LNK_SERVO_LINK", "LNK_SERVO_HORN"];
+        if (bump > 0)
+        {
+            moving = concatenateArrays([moving, ["LNK_WHEEL_RL", "LNK_WHEEL_RR"]]);
+            ignore = concatenateArrays([ignore, ["LNK_TIE_ROD_L", "LNK_TIE_ROD_R", "LNK_ARM_L", "LNK_ARM_R", "LNK_UPPER_ARM_L", "LNK_UPPER_ARM_R", "LNK_SHOCKB_FL", "LNK_SHOCKB_FR", "LNK_SHOCKR_FL", "LNK_SHOCKR_FR", "LNK_REAR_ARM_L", "LNK_REAR_ARM_R", "LNK_SHOCKB_RL", "LNK_SHOCKB_RR", "LNK_SHOCKR_RL", "LNK_SHOCKR_RR"]]);
+        }
         var mv = [];
         var stat = [];
         var byLink = {};
@@ -3649,14 +3775,17 @@ export const arvAudit = defineFeature(function(context is Context, id is Id, def
             byLink[ln] = append(byLink[ln], b);
             if (isIn(ln, moving))
                 mv = append(mv, b);
-            else if (!isIn(ln, ["LNK_CRANK_L", "LNK_CRANK_R", "LNK_DRAG_LINK", "LNK_SERVO_LINK", "LNK_SERVO_HORN"]))
+            else if (!isIn(ln, ignore))
                 stat = append(stat, b);
         }
+        // bump: raise the moving corners / wheels (vertical translation; camber change < 1.4 deg neglected)
+        if (bump > 0)
+            opTransform(context, id + "bump", { "bodies" : qUnion(mv), "transform" : transform(v(0, 0, bump)) });
         var k = 0;
         var warn = false;
         // STEER: moving corner vs static world
         const sc = clashes(context, mv, stat);
-        marker(context, id, k, "AUDIT STEER theta=" ~ round(theta * 10) / 10 ~ " psiL=" ~ round(st.psiL * 10) / 10 ~ " psiR=" ~ round(st.psiR * 10) / 10 ~ " clashes=" ~ size(sc));
+        marker(context, id, k, "AUDIT STEER bump=" ~ bump ~ " theta=" ~ round(theta * 10) / 10 ~ " psiL=" ~ round(st.psiL * 10) / 10 ~ " psiR=" ~ round(st.psiR * 10) / 10 ~ " clashes=" ~ size(sc));
         k += 1;
         for (var s in sc)
         {
@@ -3674,7 +3803,7 @@ export const arvAudit = defineFeature(function(context is Context, id is Id, def
             stg(context, Sw);
             var others = [];
             for (var ln, bs in byLink)
-                if (ln != "LNK_BATTERY" && ln != "LNK_BATTERY_PANEL")
+                if (ln != "LNK_BATTERY" && ln != "LNK_BATTERY_PANEL" && ln != "LNK_WIRING" && ln != "LNK_LIDAR")
                     others = concatenateArrays([others, bs]);
             var bc = [];
             for (var c in evCollision(context, { "tools" : posQ(Sw), "targets" : qUnion(others) }))
@@ -3694,7 +3823,7 @@ export const arvAudit = defineFeature(function(context is Context, id is Id, def
             stg(context, St);
             var oth2 = [];
             for (var ln, bs in byLink)
-                if (ln != "LNK_ELECTRONICS_TRAY" && ln != "LNK_CENTER_PANEL")
+                if (ln != "LNK_ELECTRONICS_TRAY" && ln != "LNK_CENTER_PANEL" && ln != "LNK_WIRING" && ln != "LNK_LIDAR")
                     oth2 = concatenateArrays([oth2, bs]);
             var tc = [];
             for (var c in evCollision(context, { "tools" : posQ(St), "targets" : qUnion(oth2) }))
@@ -3749,3 +3878,148 @@ export const arvAudit = defineFeature(function(context is Context, id is Id, def
         if (warn)
             reportFeatureWarning(context, id, "ARV audit found clashes (see AUDIT/CLASH marker part names)");
     });
+
+
+// =====================================================================================================
+//  55_WIRING  (harness geometry: bundle centre-lines as tube chains through the modelled pass-throughs)
+//  70_LIDAR_OPTION  (low rear-roof RPLIDAR A1 mount: scan plane above every other body feature)
+// =====================================================================================================
+// tube chain through points (mm), diameter d; segments overlap at the bends
+function harness(context is Context, id is Id, pts is array, d is number, name is string, pn is string, desc is string, c is Color)
+{
+    var B = bld(id);
+    trace(context, "harness " ~ name);
+    for (var i = 0; i + 1 < size(pts); i += 1)
+    {
+        const a = pt(pts[i]);
+        const b = pt(pts[i + 1]);
+        const u = normalize(b - a);
+        cyl(context, B, arr(a - u * d * 0.45 * millimeter), arr(b + u * d * 0.45 * millimeter), d / 2, true);
+    }
+    fin(context, B, name, pn, desc, ArvMat.RUBBER);
+    setProperty(context, { "entities" : posQ(B), "propertyType" : PropertyType.APPEARANCE, "value" : c });
+}
+
+// printed snap clip around a bundle: ring + foot (M3 screw into the named host)
+function cableClip(context is Context, id is Id, p is array, axis is Vector, d is number, footDir is Vector, name is string)
+{
+    var B = bld(id);
+    const cs = coordSystem(v(p[0], p[1], p[2]), normalize(cross(axis, footDir)), normalize(axis));
+    cz(context, B, cs, 0, 0, d / 2 + 1.6, -3, 3, true);
+    const fcs = coordSystem(v(p[0], p[1], p[2]) + normalize(footDir) * (d / 2 + 2.2) * millimeter, normalize(cross(axis, footDir)), normalize(axis));
+    bx(context, B, fcs, -5, 5, -1.2, 1.2, -3, 3, true);
+    stg(context, B);
+    cz(context, B, cs, 0, 0, d / 2 + 0.2, -4, 4, false);
+    fin(context, B, name, "ARV-55-001", "Printed cable clip (PETG), holds the bundle on its route", ArvMat.PETG);
+}
+
+export function harnessRoutes(P is map, g is map) returns array
+{
+    const k = pack(P, g);
+    const xr = g.xTail + 3;
+    const zc = g.tunZ1 + g.tunWall + 1.8;          // tunnel roof channel
+    const zp = P.cameraHeight;
+    const rz = g.zRoof - (g.zRoof - g.zHB - 5) * (P.cameraX - 30 - (g.xF - 30)) / (g.xNose - (g.xF - 30));
+    var r = [];
+    // [name, points, dia, colour, description]
+    r = append(r, ["HARNESS_MAIN_POWER", [[xr + 7, -26, 113.5], [xr + 20, -34, 113.5], [-62, -34, 113.5], [-62, -34, 104], [-62, -34, 50], [-30, 4, 46], [40, 6, 46], [58, 22, 50]], 6, color(0.75, 0.1, 0.08), "XT60 pigtail 12 AWG pair: bay corner (clear of the battery exit) -> along the tunnel outside wall (2 clips) -> tray corridor -> 15 A main fuse"]);
+    for (var s in [1, -1])
+    {
+        const t = s > 0 ? "L" : "R";
+        r = append(r, ["HARNESS_MOTOR_" ~ t, [[g.xR, s * (g.faceY - 83.5), g.zA + 6], [g.xR, s * 7, 60], [g.X0 - 6, s * 7, 60], [-60, s * 7, 62], [-24, s * 7, 64], [-20, -20 - 10 * (1 - s), 64]], 5, color(0.1, 0.1, 0.1), "Gearmotor power (2x 18 AWG) + encoder (6-wire) in sleeve: motor end cap -> tub rear wall slot -> MDD10A / Teensy (service loop at the arm)"]);
+    }
+    r = append(r, ["HARNESS_SERVO", [[g.servoX - 11.5, -26, 50], [170, -26, 48.15], [152, -33, 48.15], [136, -33, 48.15], [125, -15, 47], [113, 0, 45], [100, 0, 58], [88, 0, 58]], 3.5, color(0.9, 0.5, 0.1), "Servo lead (3-wire) under the nose box and the tower plate, over the drag link, through the bulkhead corridor to the 6 V BEC / Teensy"]);
+    r = append(r, ["HARNESS_TOF_FRONT", [[k.TOF_X - 18, 44, 92], [k.TOF_X - 13, 0, 94], [k.TOF_X - 18, -44, 92], [190, -46, 92], [(g.towerF0 + g.towerF1) / 2, -44, 88], [118, -48, 92], [100, -42, 100], [-2, -42, 100], [-10, -37.5, 100]], 4, color(0.2, 0.4, 0.9), "I2C + 3V3 daisy chain of the 3 front VL53L1X (XSHUT lines) through the tower window and bay pass-through to the Teensy"]);
+    r = append(r, ["HARNESS_TOF_REAR", [[g.xTail - 16, 0, P.rearSensorZ + 1], [g.xTail - 5, 0, 62], [-120, 0, 62], [-45, 0, 62], [g.deckX0 + 60, 52, 70], [g.deckX0 + 60, 52, 95], [7.2, 45, 97], [7.2, 37.5, 100]], 3, color(0.2, 0.4, 0.9), "Rear VL53L1X: bumper channel -> tub rear slot -> deck pass-through -> Teensy"]);
+    r = append(r, ["HARNESS_CAMERA_USB", [[P.cameraX, -49, zp], [P.cameraX - 20, -49, zp - 2], [P.cameraX - 30, 0, rz + 2], [P.cameraX - 30, 0, rz - 8], [118, 0, 121], [106, 10, 112]], 5, color(0.1, 0.1, 0.1), "RealSense D435i USB-C -> Jetson USB 3 (roof pass-through under the pod, bay front-wall grommet)"]);
+    r = append(r, ["HARNESS_CAMERA_CSI", [[P.cameraX - 1.5, k.CAM_Y, zp], [P.cameraX - 20, 45, zp - 2], [P.cameraX - 30, 3, rz + 2], [P.cameraX - 30, 3, rz - 8], [118, -6, 121], [106, -12, 112]], 3, color(0.85, 0.85, 0.85), "IMX219 CSI-2 flat cable (15/22-pin adapter) -> Jetson CAM0"]);
+    r = append(r, ["HARNESS_ESTOP", [[k.ESTOP_X, k.ESTOP_Y, g.zRoof - 41], [k.ESTOP_X, 40, 100], [-120, 40, 100], [-90, 40, 100], [-90, 40, 60], [-80, 30, 46]], 4, color(0.8, 0.1, 0.1), "E-stop NC contact pair -> watchdog relay (motor branch)"]);
+    r = append(r, ["HARNESS_JETSON_POWER", [[30, 50, 64], [g.deckX0 + 60, 56, 70], [g.deckX0 + 60, 56, 95], [15, 43, 98]], 4, color(0.75, 0.1, 0.08), "19 V DC-DC -> Jetson DC barrel jack"]);
+    return r;
+}
+
+function buildWiring(context is Context, id is Id, P is map, g is map)
+{
+    link(context, "LNK_WIRING");
+    var i = 0;
+    for (var h in harnessRoutes(P, g))
+    {
+        try
+        {
+            harness(context, id + ("h" ~ i), h[1], h[2], h[0], "ARV-55-" ~ (100 + i), h[4], h[3]);
+        }
+        catch (e)
+        {
+            recordError(context, id, h[0], e);
+        }
+        i += 1;
+    }
+    // cable clips: tunnel roof channel (pigtail), tub wall (E-stop), bulkhead corridor (servo), tray corridor (motor)
+    const zc = g.tunZ1 + g.tunWall + 1.8;
+    const clips = [[[-150, -34, 113.5], X, 6, Y], [[-100, -34, 113.5], X, 6, Y], [[-105, 40, 100], X, 4, -Z], [[125, 0, 52], normalize(vector(-12, 0, -7)), 3.5, -Z], [[-40, 8, 62], X, 5, -Z]];
+    var n = 0;
+    for (var c in clips)
+    {
+        try
+        {
+            cableClip(context, id + ("c" ~ n), c[0], c[1], c[2], c[3], "CABLE_CLIP_" ~ (n + 1));
+        }
+        catch (e)
+        {
+            recordError(context, id, "clip", e);
+        }
+        n += 1;
+    }
+}
+
+// ---------------------------------------------------------------- optional LiDAR (rear roof, low profile)
+export function lidarPos(P is map, g is map) returns array
+{
+    return [-118, 0, g.zRoof];
+}
+
+export function lidarScrews(P is map, g is map) returns array
+{
+    const l = lidarPos(P, g);
+    return [[l[0] - 40, 30], [l[0] - 40, -30], [l[0] + 40, 30], [l[0] + 40, -30]];
+}
+
+function buildLidar(context is Context, id is Id, P is map, g is map)
+{
+    link(context, "LNK_LIDAR");
+    const l = lidarPos(P, g);
+    try
+    {
+        var B = bld(id + "plate");
+        trace(context, "lidar plate");
+        pr(context, B, WCS(), [[l[0] - 50, -38], [l[0] + 42, -38], [l[0] + 50, -30], [l[0] + 50, 30], [l[0] + 42, 38], [l[0] - 50, 38]], l[2], l[2] + 4, true);
+        stg(context, B);
+        for (var p in lidarScrews(P, g))
+        {
+            hClr(context, B, [p[0], p[1], l[2] - 1], [p[0], p[1], l[2] + 5]);
+            cyl(context, B, [p[0], p[1], l[2] + 2.5], [p[0], p[1], l[2] + 5], 3.1, false);
+        }
+        // A1M8 base holes (slotted +-2 mm: VERIFY) and cable pass-through
+        for (var dx in [-30, 30])
+            for (var dy in [-25, 25])
+                slot(context, B, WCS(), [l[0] + dx - 2, dy], [l[0] + dx + 2, dy], 2.8, l[2] - 1, l[2] + 5, false);
+        cax(context, B, "Z", [l[0], 0, l[2] + 2], 12, 10, false);
+        fin(context, B, "LIDAR_ADAPTER_PLATE", "ARV-70-001", "Optional RPLIDAR A1M8 adapter plate on the rear roof (4x M3 into roof inserts, slotted lidar holes, cable pass-through). PETG-CF.", ArvMat.PETGCF);
+        var n = 0;
+        for (var p in lidarScrews(P, g))
+        {
+            screw(context, id + ("s" ~ n), [p[0], p[1], l[2] + 2.5], [0, 0, -1], 10, 3, true);
+            n += 1;
+        }
+        var Ld = bld(id + "lidar");
+        wb(context, Ld, l[0] - 48.4, l[0] + 48.4, -35.15, 35.15, l[2] + 4, l[2] + 34, true);
+        cyl(context, Ld, [l[0] + 13, 0, l[2] + 34], [l[0] + 13, 0, l[2] + 59], 35, true);
+        stg(context, Ld);
+        fin(context, Ld, "RPLIDAR_A1M8", "PUR-SNS-RPLIDAR-A1", "Slamtec RPLIDAR A1M8 (optional), scan plane ~Z " ~ round(l[2] + 4 + 38) ~ " mm, clear of pod and E-stop", ArvMat.PCB);
+        harness(context, id + "hl", [[l[0], 0, l[2] + 3], [l[0], 0, l[2] - 6], [l[0], -40, l[2] - 6], [l[0] + 20, -44, 124], [-40, -46, 120], [10, -42, 118]], 4, "HARNESS_LIDAR", "ARV-70-100", "RPLIDAR USB -> Jetson (roof grommet)", color(0.1, 0.1, 0.1));
+    }
+    catch (e)
+    {
+        recordError(context, id, "LIDAR", e);
+    }
+}

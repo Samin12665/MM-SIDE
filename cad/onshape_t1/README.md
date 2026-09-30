@@ -13,9 +13,11 @@ The FeatureScript library in `01_FS_ARV_LIB` of the Onshape document **SIDE ARV-
 | `src/a50_body.fs` | Body zones / shell, **ARV Body Master**, 61–66 body builders |
 | `src/a90_builder.fs` | **ARV Studio Builder** feature (one per subsystem studio, placed after its Derived feature) |
 | `src/a95_links.fs`, `src/a96_connectors.fs` | Kinematic joint table, **ARV Link Connectors** (part-owned mate connectors) |
-| `src/a97_audit.fs` | **ARV Clearance Audit** (steering pose, battery removal sweep, tray lift sweep, static clashes) |
+| `src/a97_audit.fs` | **ARV Clearance Audit** (steering pose + bump, battery removal sweep, tray lift sweep, static clashes) |
+| `src/a98_wiring.fs` | 55_WIRING harness routes + cable clips, 70_LIDAR_OPTION adapter plate + RPLIDAR |
 | `ARV_LIB.fs` | Concatenated library (`node tools/build.js`), identical to the Feature Studio contents |
 | `tools/helpers.js`, `tools/asm.js` | Browser-session REST helpers: push library, create studios / Derived features, build assemblies and mates |
+| `tools/drw.js` | Drawings (create + views + notes via the drawing JSON API), PDF export, blob download |
 | `tools/serve.js`, `tools/carry.html` | Local file relay (the Onshape tab's CSP blocks localhost fetches; files travel through `window.name`) |
 
 To change the car, edit a `#variable` in `00_CAR_MASTER`: every studio updates through its Derived feature.

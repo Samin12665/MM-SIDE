@@ -10,13 +10,13 @@ export function pack(P is map, g is map) returns map
     const lz = g.lowZ1;                                  // lower tray plate top (38)
     const dz = g.deckZ1;                                 // upper deck top (87)
     // lower tray level: power + motor driver (Y- = power side, Y+ = logic power)
-    k.MDD10A = [-16, 68, -66, -4, lz + 4, lz + 4 + 20];                  // Cytron MDD10A 84 x 62 x 20 on 4 mm stand-offs
+    k.MDD10A = [-16, 68.5, -66, -4, lz + 4, lz + 4 + 25];                // Cytron MDD10A 84.5 x 62 x 25 (datasheet) on 4 mm stand-offs
     k.DCDC19 = [-16, 44, 16, 66, lz + 1, lz + 1 + 22];                   // 19 V buck-boost 60 x 50 x 22
     k.FUSE = [48, 103, 26, 66, lz, lz + 25];                             // 2-way ATO fuse holder 55 x 40 x 25
     k.BUCK5 = [66, 101.6, -66, -27.9, lz + 4, lz + 4 + 10];              // 5 V 5 A buck 35.6 x 38.1
     k.BEC6 = [70, 95, -22, 18, lz + 4, lz + 4 + 12];                     // 6 V 5 A servo BEC 25 x 40
     // upper deck: compute
-    k.JETSON = [g.deckX1 - 103, g.deckX1, -45.25, 45.25, dz + 6, dz + 6 + 34.8];   // Orin Nano Super dev kit
+    k.JETSON = [g.deckX1 - 100, g.deckX1, -39.5, 39.5, dz + 6, dz + 6 + 21];       // Orin Nano Super dev kit 100 x 79 x 21 (NVIDIA)
     k.TEENSY = [g.deckX0 + 2, g.deckX0 + 52, -35, 35, dz + 5, dz + 5 + 18];         // Teensy 4.1 carrier 50 x 70
     k.IMU = [-20, 5.4, 46, 63.8, dz + 12, dz + 12 + 4];                  // BNO085 on plinth (near CG)
     k.RX = [g.deckX0 + 2, g.deckX0 + 42, -66, -44, dz + 2, dz + 2 + 10]; // SBUS receiver 40 x 22

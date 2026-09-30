@@ -93,10 +93,10 @@ function pGearmotor(context is Context, id is Id, P is map, g is map, s is numbe
 {
     var B = bld(id);
     const FY = g.faceY;
-    cyl(context, B, [g.xR, s * (FY - 82), g.zA], [g.xR, s * FY, g.zA], 18.5, true);
+    cyl(context, B, [g.xR, s * (FY - 80.5), g.zA], [g.xR, s * FY, g.zA], 18.5, true);
     cyl(context, B, [g.xR, s * FY, g.zA], [g.xR, s * (FY + 4), g.zA], 6, true);
-    cyl(context, B, [g.xR, s * FY, g.zA], [g.xR, s * (FY + 22), g.zA], 3, true);
-    fin(context, B, s > 0 ? "GEARMOTOR_37D_L" : "GEARMOTOR_37D_R", "PUR-MOT-POLOLU-4751", "Pololu 37D 19:1 12 V gearmotor with 64 CPR encoder (#4751): D37 x 82, 6 mm D-shaft", ArvMat.MOTOR);
+    cyl(context, B, [g.xR, s * FY, g.zA], [g.xR, s * (FY + 16), g.zA], 3, true);
+    fin(context, B, s > 0 ? "GEARMOTOR_37D_L" : "GEARMOTOR_37D_R", "PUR-MOT-POLOLU-4751", "Pololu 37D 19:1 12 V gearmotor with 64 CPR encoder (#4751): D37 x 68 + 12.5 encoder, 6 x 16 mm D-shaft, 6x M3 on a 31 mm hexagon", ArvMat.MOTOR);
 }
 
 function pMotorHub(context is Context, id is Id, P is map, g is map, s is number)
@@ -145,7 +145,7 @@ function buildDrive(context is Context, id is Id, P is map, g is map)
                 ["hub", function(i) { pMotorHub(context, i, P, g, s); }, "LNK_WHEEL_R" ~ t],
                 ["hex", function(i) { pHexAdapter(context, i, P, g, s); }, "LNK_WHEEL_R" ~ t],
                 ["whl", function(i) { wheel(context, i, P, g, [g.xR, s * g.yW, g.zA], s, "R" ~ t); }, "LNK_WHEEL_R" ~ t],
-                ["shk", function(i) { shockBody(context, i, [g.shockRLowX, s * g.shockRY, g.shockRLowZ], [g.towerR0 - 9 - 3.4, s * g.shockRY, g.shockRUpZ], "SHOCK_R" ~ t, "PUR-SUS-SHOCK-80"); }, "LNK_REAR_SHOCK_" ~ t]];
+                ["shk", function(i) { shockParts(context, i, [g.shockRLowX, s * g.shockRY, g.shockRLowZ], [g.towerR0 - 9 - 3.4, s * g.shockRY, g.shockRUpZ], "R" ~ t, "LNK_SHOCKB_R" ~ t, "LNK_SHOCKR_R" ~ t); }, "LNK_SHOCKB_R" ~ t]];
         for (var p in parts)
             try
             {
@@ -236,7 +236,7 @@ function pBatteryPack(context is Context, id is Id, P is map, g is map)
     fin(context, B, "BATTERY_3S_5000", "PUR-PWR-LIPO-3S5000", "3S 11.1 V 5000 mAh hard-case LiPo, XT60, leads toward the rear (max 139 x 47 x 37)", ArvMat.LIPO);
     // XT60 pair in the connector bay + foam pads
     var C = bld(id + "xt");
-    wb(context, C, b[0] - 16, b[0] - 8, -10, 6, b[4] + 8, b[4] + 24, true);
+    wb(context, C, b[0] - 16, b[0] - 8, -31, -21, b[4] + 8, b[4] + 24, true);
     fin(context, C, "XT60_PAIR", "PUR-PWR-XT60", "XT60 male/female pair (battery lead to vehicle pigtail)", ArvMat.PETG);
     var F = bld(id + "fm");
     wb(context, F, b[1], g.tunX1, -15, 15, b[4] + 5, b[5] - 5, true);
@@ -323,7 +323,7 @@ function pTrayDeck(context is Context, id is Id, P is map, g is map)
         wb(context, B, x0 + 6, x1 - 6, y - 1.2, y + 1.2, Z0 - 4, Z0, true);
     for (var x in [-20, 20, 60, 100])
         wb(context, B, x - 1.2, x + 1.2, -58, 58, Z0 - 4, Z0, true);
-    boardBosses(context, B, [k.JETSON[0] + 8.5, k.JETSON[1] - 8.5, -29, 29], Z1, k.JETSON[4] - Z1, 0);
+    boardBosses(context, B, [k.JETSON[0] + 7, k.JETSON[1] - 7, -29, 29], Z1, k.JETSON[4] - Z1, 0);
     boardBosses(context, B, k.TEENSY, Z1, k.TEENSY[4] - Z1, 2);
     // IMU plinth (solid, rigid, near CG)
     wb(context, B, k.IMU[0] - 3, k.IMU[1] + 3, k.IMU[2] - 3, k.IMU[3] + 3, Z1, k.IMU[4], true);
@@ -336,7 +336,7 @@ function pTrayDeck(context is Context, id is Id, P is map, g is map)
     {
         hClr(context, B, [p[0], p[1], Z0 - 5], [p[0], p[1], Z1 + 1]);
     }
-    boardHoles(context, B, [k.JETSON[0] + 8.5, k.JETSON[1] - 8.5, -29, 29], Z1, k.JETSON[4] - Z1, 0);
+    boardHoles(context, B, [k.JETSON[0] + 7, k.JETSON[1] - 7, -29, 29], Z1, k.JETSON[4] - Z1, 0);
     boardHoles(context, B, k.TEENSY, Z1, k.TEENSY[4] - Z1, 2);
     for (var cx in [k.IMU[0] + 2.55, k.IMU[1] - 2.55])
         for (var cyy in [k.IMU[2] + 2.55, k.IMU[3] - 2.55])
@@ -378,8 +378,8 @@ function pJetson(context is Context, id is Id, P is map, g is map)
     const k = pack(P, g);
     const b = k.JETSON;
     var B = bld(id);
-    wb(context, B, b[0], b[1], b[2], b[3], b[4], b[4] + 21.6, true);
-    wb(context, B, (b[0] + b[1]) / 2 - 35, (b[0] + b[1]) / 2 + 35, -22.5, 22.5, b[4] + 21.6, b[5], true);
+    wb(context, B, b[0], b[1], b[2], b[3], b[4], b[4] + 6, true);
+    wb(context, B, (b[0] + b[1]) / 2 - 35, (b[0] + b[1]) / 2 + 35, -30, 30, b[4] + 6, b[5], true);
     fin(context, B, "JETSON_ORIN_NANO_SUPER", "PUR-CMP-JETSON-ORIN-NANO", "NVIDIA Jetson Orin Nano Super Developer Kit (carrier + module + fan heatsink)", ArvMat.PCB);
 }
 

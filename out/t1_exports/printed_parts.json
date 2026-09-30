@@ -1,0 +1,254 @@
+[
+ {
+  "studio": "10_CHASSIS",
+  "name": "MAIN_CHASSIS",
+  "pn": "ARV-10-001",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "10_CHASSIS",
+  "name": "LOWER_SKID",
+  "pn": "ARV-10-002",
+  "material": "PETG (printed)"
+ },
+ {
+  "studio": "10_CHASSIS",
+  "name": "REAR_SHOCK_TOWER_L",
+  "pn": "ARV-10-003",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "10_CHASSIS",
+  "name": "REAR_SHOCK_TOWER_R",
+  "pn": "ARV-10-004",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "10_CHASSIS",
+  "name": "REAR_BUMPER_FRAME",
+  "pn": "ARV-10-005",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "20_FRONT_STEERING",
+  "name": "FRONT_BULKHEAD",
+  "pn": "ARV-20-001",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "20_FRONT_STEERING",
+  "name": "FRONT_SHOCK_TOWER",
+  "pn": "ARV-20-002",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "20_FRONT_STEERING",
+  "name": "BELLCRANK_L",
+  "pn": "ARV-20-007",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "20_FRONT_STEERING",
+  "name": "BELLCRANK_R",
+  "pn": "ARV-20-008",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "20_FRONT_STEERING",
+  "name": "DRAG_LINK",
+  "pn": "ARV-20-009",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "20_FRONT_STEERING",
+  "name": "SERVO_LINK",
+  "pn": "ARV-20-010",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "20_FRONT_STEERING",
+  "name": "FRONT_LOWER_ARM_L",
+  "pn": "ARV-20-005",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "20_FRONT_STEERING",
+  "name": "FRONT_LOWER_ARM_R",
+  "pn": "ARV-20-006",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "20_FRONT_STEERING",
+  "name": "FRONT_UPPER_ARM_L",
+  "pn": "ARV-20-011",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "20_FRONT_STEERING",
+  "name": "FRONT_UPPER_ARM_R",
+  "pn": "ARV-20-012",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "20_FRONT_STEERING",
+  "name": "FRONT_KNUCKLE_L",
+  "pn": "ARV-20-003",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "20_FRONT_STEERING",
+  "name": "FRONT_KNUCKLE_R",
+  "pn": "ARV-20-004",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "30_DRIVETRAIN",
+  "name": "TRAILING_ARM_L",
+  "pn": "ARV-30-001",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "30_DRIVETRAIN",
+  "name": "HEX_ADAPTER_L",
+  "pn": "ARV-30-003",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "30_DRIVETRAIN",
+  "name": "TRAILING_ARM_R",
+  "pn": "ARV-30-002",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "30_DRIVETRAIN",
+  "name": "HEX_ADAPTER_R",
+  "pn": "ARV-30-004",
+  "material": "PA-CF (printed, structural)"
+ },
+ {
+  "studio": "40_BATTERY_SYSTEM",
+  "name": "BATTERY_TUNNEL",
+  "pn": "ARV-40-001",
+  "material": "PETG-CF (printed)"
+ },
+ {
+  "studio": "50_ELECTRONICS_TRAY",
+  "name": "TRAY_FRAME",
+  "pn": "ARV-50-001",
+  "material": "PETG (printed)"
+ },
+ {
+  "studio": "50_ELECTRONICS_TRAY",
+  "name": "TRAY_UPPER_DECK",
+  "pn": "ARV-50-002",
+  "material": "PETG-CF (printed)"
+ },
+ {
+  "studio": "62_BODY_MAIN",
+  "name": "BODY_MAIN_FRONT",
+  "pn": "ARV-62-001",
+  "material": "ASA (printed, UV-stable body)"
+ },
+ {
+  "studio": "62_BODY_MAIN",
+  "name": "BODY_MAIN_REAR",
+  "pn": "ARV-62-002",
+  "material": "ASA (printed, UV-stable body)"
+ },
+ {
+  "studio": "63_CENTER_SERVICE_PANEL",
+  "name": "CENTER_SERVICE_PANEL",
+  "pn": "ARV-63-001",
+  "material": "ASA (printed, UV-stable body)"
+ },
+ {
+  "studio": "64_REAR_BATTERY_PANEL",
+  "name": "REAR_BATTERY_PANEL",
+  "pn": "ARV-64-001",
+  "material": "ASA (printed, UV-stable body)"
+ },
+ {
+  "studio": "61_FRONT_FASCIA_BUMPERS",
+  "name": "FRONT_SENSOR_FASCIA",
+  "pn": "ARV-61-001",
+  "material": "PETG-CF (printed)"
+ },
+ {
+  "studio": "61_FRONT_FASCIA_BUMPERS",
+  "name": "FRONT_BUMPER",
+  "pn": "ARV-61-002",
+  "material": "TPU 95A (printed)"
+ },
+ {
+  "studio": "61_FRONT_FASCIA_BUMPERS",
+  "name": "REAR_BUMPER",
+  "pn": "ARV-61-003",
+  "material": "TPU 95A (printed)"
+ },
+ {
+  "studio": "65_CAMERA_POD",
+  "name": "CAMERA_POD",
+  "pn": "ARV-65-001",
+  "material": "PETG-CF (printed)"
+ },
+ {
+  "studio": "66_FENDERS",
+  "name": "FENDER_FL",
+  "pn": "ARV-66-001",
+  "material": "PETG-CF (printed)"
+ },
+ {
+  "studio": "66_FENDERS",
+  "name": "FENDER_FR",
+  "pn": "ARV-66-002",
+  "material": "PETG-CF (printed)"
+ },
+ {
+  "studio": "66_FENDERS",
+  "name": "FENDER_RL",
+  "pn": "ARV-66-003",
+  "material": "PETG-CF (printed)"
+ },
+ {
+  "studio": "66_FENDERS",
+  "name": "FENDER_RR",
+  "pn": "ARV-66-004",
+  "material": "PETG-CF (printed)"
+ },
+ {
+  "studio": "55_WIRING",
+  "name": "CABLE_CLIP_1",
+  "pn": "ARV-55-001",
+  "material": "PETG (printed)"
+ },
+ {
+  "studio": "55_WIRING",
+  "name": "CABLE_CLIP_2",
+  "pn": "ARV-55-001",
+  "material": "PETG (printed)"
+ },
+ {
+  "studio": "55_WIRING",
+  "name": "CABLE_CLIP_3",
+  "pn": "ARV-55-001",
+  "material": "PETG (printed)"
+ },
+ {
+  "studio": "55_WIRING",
+  "name": "CABLE_CLIP_4",
+  "pn": "ARV-55-001",
+  "material": "PETG (printed)"
+ },
+ {
+  "studio": "55_WIRING",
+  "name": "CABLE_CLIP_5",
+  "pn": "ARV-55-001",
+  "material": "PETG (printed)"
+ },
+ {
+  "studio": "70_LIDAR_OPTION",
+  "name": "LIDAR_ADAPTER_PLATE",
+  "pn": "ARV-70-001",
+  "material": "PETG-CF (printed)"
+ }
+]

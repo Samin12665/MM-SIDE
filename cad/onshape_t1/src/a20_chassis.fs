@@ -124,6 +124,8 @@ function pMainChassis(context is Context, id is Id, P is map, g is map)
     for (var s in [1, -1])
         cax(context, B, "Y", [g.pivX - 22, s * HW, 64], 11, 10, false);
     wb(context, B, X1 - 4, X1 + 1, -15, 15, g.ZFT + 4, g.ZFT + 22, false);
+    // rear wall harness slot (motor leads + rear ToF), between the frame bolt bosses
+    wb(context, B, X0 - 1, X0 + T + 1, -14, 14, 54, 68, false);
     // passive ventilation slots (motor driver / DC-DC bay), low on both side walls
     for (var s in [1, -1])
         for (var i = 0; i < 5; i += 1)

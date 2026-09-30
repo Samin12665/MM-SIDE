@@ -211,7 +211,9 @@ function pFrontTower(context is Context, id is Id, P is map, g is map)
             pr(context, B, SIDE(), [[gx, 34], [gx + sg * 5, 34], [gx, 50]], -y1, -y0, true);
         }
         cax(context, B, "X", [t0 - 1.5, s * g.shockFY, g.shockFUpZ], 9, 3, true);
-        cax(context, B, "X", [t1 + 1.5, s * g.camberInY, g.kUpZ], 10, 3, true);
+        // upper A-arm clevis: the tower plate is the rear lug, bridge + front lug carry the X-axis hinge pin
+        wb(context, B, t1 - 0.01, t1 + 15.5, s * (g.camberInY - 5), s * (g.camberInY + 5), g.kUpZ + 5, g.kUpZ + 9, true);
+        wb(context, B, t1 + 11.8, t1 + 15.5, s * (g.camberInY - 5), s * (g.camberInY + 5), g.kUpZ - 6, g.kUpZ + 9, true);
     }
     stg(context, B);
     for (var s in [1, -1])
@@ -219,7 +221,7 @@ function pFrontTower(context is Context, id is Id, P is map, g is map)
         for (var lx in [t0 - 1.5, t1 + 1.5])
             hClr(context, B, [lx, s * 20, 29], [lx, s * 20, 35]);
         hIns(context, B, [t0 - 3, s * g.shockFY, g.shockFUpZ], [1, 0, 0], 6);
-        hIns(context, B, [t1 + 3, s * g.camberInY, g.kUpZ], [-1, 0, 0], 6);
+        cyl(context, B, [t0 - 1, s * g.camberInY, g.kUpZ], [t1 + 16.5, s * g.camberInY, g.kUpZ], 1.5, false);
     }
     // body nose locating pin holes (Ø4.2 x 8) in the top edge
     for (var y in [-30, 30])
@@ -227,7 +229,7 @@ function pFrontTower(context is Context, id is Id, P is map, g is map)
     wb(context, B, t0 - 1, t1 + 1, -8, 8, 56, top - 14, false);
     for (var y in [-44, 44])
         wb(context, B, t0 - 1, t1 + 1, y - 8, y + 8, 76, top - 12, false);
-    fin(context, B, "FRONT_SHOCK_TOWER", "ARV-20-002", "Front shock tower: shock ball studs (rearward) + camber-link studs (forward), 4x M3 into bulkhead, body-nose locating pins. PA-CF.", ArvMat.PACF);
+    fin(context, B, "FRONT_SHOCK_TOWER", "ARV-20-002", "Front shock tower: shock ball studs (rearward), upper A-arm clevises with M3x25 hinge pins, 4x M3 into bulkhead, body-nose locating pins. PA-CF.", ArvMat.PACF);
     var n = 0;
     for (var s in [1, -1])
     {
@@ -237,7 +239,7 @@ function pFrontTower(context is Context, id is Id, P is map, g is map)
             n += 1;
         }
         insert(context, id + ("a" ~ n), [t0 - 3, s * g.shockFY, g.shockFUpZ], [1, 0, 0]);
-        insert(context, id + ("c" ~ n), [t1 + 3, s * g.camberInY, g.kUpZ], [-1, 0, 0]);
+        screw(context, id + ("c" ~ n), [t1 + 15.5, s * g.camberInY, g.kUpZ], [-1, 0, 0], 25, 3, false);
         n += 1;
     }
 }
@@ -435,6 +437,61 @@ function shockBody(context is Context, id is Id, lo is array, up is array, name 
     fin(context, B, name, pn, "1/10 aluminium oil shock 80 mm eye-to-eye (ball ends), 22 mm stroke", ArvMat.ALU);
 }
 
+// oil shock split into the two parts that stroke against each other (body + upper eye / rod + lower eye)
+function shockParts(context is Context, id is Id, lo is array, up is array, tag is string, linkB is string, linkR is string)
+{
+    const d = normalize(pt(up) - pt(lo));
+    const L = norm(pt(up) - pt(lo)) / millimeter;
+    const bl = 0.58 * L;
+    trace(context, "shock " ~ tag);
+    link(context, linkB);
+    var B = bld(id + "b");
+    cyl(context, B, arr(pt(up) - d * (bl + 4) * millimeter), arr(pt(up) - d * 1 * millimeter), 8, true);
+    cyl(context, B, arr(pt(up) - d * 2.4 * millimeter), arr(pt(up) + d * 2.4 * millimeter), 3.4, true);
+    stg(context, B);
+    cyl(context, B, arr(pt(up) - d * (bl + 4.1) * millimeter), arr(pt(up) - d * (bl + 4 - 30) * millimeter), 1.7, false);
+    fin(context, B, "SHOCK_BODY_" ~ tag, "PUR-SUS-SHOCK-80", "1/10 aluminium oil shock 80 mm eye-to-eye, 22 mm stroke: body, spring and upper ball end", ArvMat.ALU);
+    link(context, linkR);
+    var R = bld(id + "r");
+    cyl(context, R, arr(pt(lo) + d * 1 * millimeter), arr(pt(up) - d * (bl + 4 - 24) * millimeter), 1.5, true);
+    cyl(context, R, arr(pt(lo) - d * 2.4 * millimeter), arr(pt(lo) + d * 2.4 * millimeter), 3.4, true);
+    fin(context, R, "SHOCK_ROD_" ~ tag, "PUR-SUS-SHOCK-80-ROD", "Shock piston rod + lower ball end (supplied with PUR-SUS-SHOCK-80)", ArvMat.STEEL);
+}
+
+// purchased M3 ball end: threaded body from the arm tip to the captured ball on the knuckle stud
+function ballEnd(context is Context, id is Id, a is array, b is array, name is string)
+{
+    var B = bld(id);
+    const d = normalize(pt(b) - pt(a));
+    cyl(context, B, a, arr(pt(b) - d * 2 * millimeter), 3, true);
+    cyl(context, B, arr(pt(b) - d * 3.4 * millimeter), arr(pt(b) + d * 3.4 * millimeter), 3.6, true);
+    fin(context, B, name, "PUR-STR-BALLEND-M3", "M3 steel ball end with 6.8 mm ball stud (knuckle side)", ArvMat.STEEL);
+}
+
+// printed upper A-arm (replaces the ARV-1 single camber link: determinate double wishbone, same 57 mm geometry)
+function pUpperArm(context is Context, id is Id, P is map, g is map, s is number)
+{
+    var B = bld(id);
+    const ub = arr(casterT(P, g) * v(g.xF, g.KY, g.kUpZ));
+    const tipY = g.KY - 10;
+    const HY = g.camberInY;
+    const z0 = g.kUpZ - 4;
+    const z1 = g.kUpZ + 4;
+    const xi0 = g.towerF1 + 0.5;
+    const xi1 = g.towerF1 + 11.3;
+    trace(context, "upper arm");
+    pr(context, B, WCS(), [[xi0, HY], [xi1, HY], [ub[0] + 6, tipY - 6], [ub[0] + 5, tipY], [max(ub[0] - 5, xi0 + 0.3), tipY], [xi0, HY + 9]], z0, z1, true);
+    cyl(context, B, [xi0, HY, g.kUpZ], [xi1, HY, g.kUpZ], 4.3, true);
+    stg(context, B);
+    hIns(context, B, [ub[0], tipY, ub[2]], [0, -1, 0], 6);
+    cyl(context, B, [xi0 - 1, HY, g.kUpZ], [xi1 + 1, HY, g.kUpZ], 1.6, false);
+    pr(context, B, WCS(), [[xi0 + 3, HY + 6], [xi1 - 2, HY + 6], [ub[0], tipY - 14]], z0 - 1, z1 + 1, false);
+    stg(context, B);
+    if (s < 0)
+        opTransform(context, id + "mir", { "bodies" : posQ(B), "transform" : mirrorAcross(plane(v(0, 0, 0), Y)) });
+    fin(context, B, s > 0 ? "FRONT_UPPER_ARM_L" : "FRONT_UPPER_ARM_R", s > 0 ? "ARV-20-011" : "ARV-20-012", "Printed upper A-arm on an M3x25 hinge pin in the shock-tower clevis; M3 ball end captures the knuckle upper ball (57 mm effective length, ARV-1 camber curve). PA-CF 100%.", ArvMat.PACF);
+}
+
 // rugged off-road tyre + rim at wheel centre c, axis along Y, inner face toward sign -s
 export function wheel(context is Context, id is Id, P is map, g is map, c is array, s is number, tag is string)
 {
@@ -505,8 +562,10 @@ function buildFront(context is Context, id is Id, P is map, g is map, theta is n
             ["slink", function(i) { pServoLink(context, i, P, g, theta); }, "LNK_SERVO_LINK"],
             ["servo", function(i) { pServo(context, i, P, g); }, "LNK_FRONT_FRAME"],
             ["horn", function(i) { pServoHorn(context, i, P, g, theta); }, "LNK_SERVO_HORN"],
-            ["arml", function(i) { pLowerArm(context, i, P, g, 1); }, "LNK_FRONT_FRAME"],
-            ["armr", function(i) { pLowerArm(context, i, P, g, -1); }, "LNK_FRONT_FRAME"]];
+            ["arml", function(i) { pLowerArm(context, i, P, g, 1); }, "LNK_ARM_L"],
+            ["armr", function(i) { pLowerArm(context, i, P, g, -1); }, "LNK_ARM_R"],
+            ["uarml", function(i) { pUpperArm(context, i, P, g, 1); }, "LNK_UPPER_ARM_L"],
+            ["uarmr", function(i) { pUpperArm(context, i, P, g, -1); }, "LNK_UPPER_ARM_R"]];
     for (var p in parts)
         try
         {
@@ -560,12 +619,14 @@ function buildFront(context is Context, id is Id, P is map, g is map, theta is n
             const tip = arr(Tst * pt(armTip0(P, g, s)));
             link(context, "LNK_TIE_ROD_" ~ t);
             rodLink(context, cid + "tie", tip, crankBall(P, g, s, theta), "TIE_ROD_" ~ t, "PUR-STR-TIEROD-M3", "M3 steel turnbuckle + 2 ball ends, set to " ~ round(tieLen(P, g, s) * 10) / 10 ~ " mm ball-to-ball");
-            // camber link: steered upper ball -> tower stud
-            const ub = arr(Tst * (casterT(P, g) * v(g.xF, s * g.KY, g.kUpZ)));
-            link(context, "LNK_CAMBER_LINK_" ~ t);
-            rodLink(context, cid + "cam", ub, [g.towerF1 + 7.5, s * g.camberInY, g.kUpZ], "CAMBER_LINK_" ~ t, "PUR-STR-CAMBER-M3", "M3 turnbuckle camber link, 57 mm ball-to-ball");
-            link(context, "LNK_FRONT_FRAME");
-            shockBody(context, cid + "shk", [g.shockFX, s * g.shockFY, g.kLowZ + 4 + 3.4], [g.towerF0 - 12, s * g.shockFY, g.shockFUpZ], "SHOCK_F" ~ t, "PUR-SUS-SHOCK-80");
+            // purchased M3 ball ends: lower on the A-arm, upper on the upper A-arm (balls on the kingpin line)
+            const lb = arr(casterT(P, g) * v(g.xF, s * g.KY, g.kLowZ));
+            const ub = arr(casterT(P, g) * v(g.xF, s * g.KY, g.kUpZ));
+            link(context, "LNK_ARM_" ~ t);
+            ballEnd(context, cid + "bel", [lb[0], s * (g.KY - 10), lb[2]], lb, "BALL_END_LOWER_" ~ t);
+            link(context, "LNK_UPPER_ARM_" ~ t);
+            ballEnd(context, cid + "beu", [ub[0], s * (g.KY - 10), ub[2]], ub, "BALL_END_UPPER_" ~ t);
+            shockParts(context, cid + "shk", [g.shockFX, s * g.shockFY, g.kLowZ + 4 + 3.4], [g.towerF0 - 12, s * g.shockFY, g.shockFUpZ], "F" ~ t, "LNK_SHOCKB_F" ~ t, "LNK_SHOCKR_F" ~ t);
         }
         catch (e)
         {

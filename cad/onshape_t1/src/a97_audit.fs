@@ -105,6 +105,8 @@ export const arvAudit = defineFeature(function(context is Context, id is Id, def
         isAngle(definition.steer, { (degree) : [-40, 0, 40] } as AngleBoundSpec);
         annotation { "Name" : "Include purchased hardware", "Default" : false }
         definition.hardware is boolean;
+        annotation { "Name" : "Wheel bump travel (front corners + rear wheels raised)" }
+        isLength(definition.bump, { (millimeter) : [0, 0, 30] } as LengthBoundSpec);
     }
     {
         const P = derivedP(context, "arvMaster");
@@ -123,9 +125,18 @@ export const arvAudit = defineFeature(function(context is Context, id is Id, def
         buildFascia(context, id + "i", P, g);
         buildCameraPod(context, id + "j", P, g);
         buildFenders(context, id + "k", P, g);
+        buildWiring(context, id + "l", P, g);
+        buildLidar(context, id + "m", P, g);
         const st = getVariable(context, "arvSteer");
         // classify bodies
-        const moving = ["LNK_KNUCKLE_L", "LNK_KNUCKLE_R", "LNK_WHEEL_FL", "LNK_WHEEL_FR", "LNK_TIE_ROD_L", "LNK_TIE_ROD_R", "LNK_CAMBER_LINK_L", "LNK_CAMBER_LINK_R"];
+        const bump = definition.bump / millimeter;
+        var moving = bump > 0 ? ["LNK_KNUCKLE_L", "LNK_KNUCKLE_R", "LNK_WHEEL_FL", "LNK_WHEEL_FR"] : ["LNK_KNUCKLE_L", "LNK_KNUCKLE_R", "LNK_WHEEL_FL", "LNK_WHEEL_FR", "LNK_TIE_ROD_L", "LNK_TIE_ROD_R"];
+        var ignore = ["LNK_CRANK_L", "LNK_CRANK_R", "LNK_DRAG_LINK", "LNK_SERVO_LINK", "LNK_SERVO_HORN"];
+        if (bump > 0)
+        {
+            moving = concatenateArrays([moving, ["LNK_WHEEL_RL", "LNK_WHEEL_RR"]]);
+            ignore = concatenateArrays([ignore, ["LNK_TIE_ROD_L", "LNK_TIE_ROD_R", "LNK_ARM_L", "LNK_ARM_R", "LNK_UPPER_ARM_L", "LNK_UPPER_ARM_R", "LNK_SHOCKB_FL", "LNK_SHOCKB_FR", "LNK_SHOCKR_FL", "LNK_SHOCKR_FR", "LNK_REAR_ARM_L", "LNK_REAR_ARM_R", "LNK_SHOCKB_RL", "LNK_SHOCKB_RR", "LNK_SHOCKR_RL", "LNK_SHOCKR_RR"]]);
+        }
         var mv = [];
         var stat = [];
         var byLink = {};
@@ -139,14 +150,17 @@ export const arvAudit = defineFeature(function(context is Context, id is Id, def
             byLink[ln] = append(byLink[ln], b);
             if (isIn(ln, moving))
                 mv = append(mv, b);
-            else if (!isIn(ln, ["LNK_CRANK_L", "LNK_CRANK_R", "LNK_DRAG_LINK", "LNK_SERVO_LINK", "LNK_SERVO_HORN"]))
+            else if (!isIn(ln, ignore))
                 stat = append(stat, b);
         }
+        // bump: raise the moving corners / wheels (vertical translation; camber change < 1.4 deg neglected)
+        if (bump > 0)
+            opTransform(context, id + "bump", { "bodies" : qUnion(mv), "transform" : transform(v(0, 0, bump)) });
         var k = 0;
         var warn = false;
         // STEER: moving corner vs static world
         const sc = clashes(context, mv, stat);
-        marker(context, id, k, "AUDIT STEER theta=" ~ round(theta * 10) / 10 ~ " psiL=" ~ round(st.psiL * 10) / 10 ~ " psiR=" ~ round(st.psiR * 10) / 10 ~ " clashes=" ~ size(sc));
+        marker(context, id, k, "AUDIT STEER bump=" ~ bump ~ " theta=" ~ round(theta * 10) / 10 ~ " psiL=" ~ round(st.psiL * 10) / 10 ~ " psiR=" ~ round(st.psiR * 10) / 10 ~ " clashes=" ~ size(sc));
         k += 1;
         for (var s in sc)
         {
@@ -164,7 +178,7 @@ export const arvAudit = defineFeature(function(context is Context, id is Id, def
             stg(context, Sw);
             var others = [];
             for (var ln, bs in byLink)
-                if (ln != "LNK_BATTERY" && ln != "LNK_BATTERY_PANEL")
+                if (ln != "LNK_BATTERY" && ln != "LNK_BATTERY_PANEL" && ln != "LNK_WIRING" && ln != "LNK_LIDAR")
                     others = concatenateArrays([others, bs]);
             var bc = [];
             for (var c in evCollision(context, { "tools" : posQ(Sw), "targets" : qUnion(others) }))
@@ -184,7 +198,7 @@ export const arvAudit = defineFeature(function(context is Context, id is Id, def
             stg(context, St);
             var oth2 = [];
             for (var ln, bs in byLink)
-                if (ln != "LNK_ELECTRONICS_TRAY" && ln != "LNK_CENTER_PANEL")
+                if (ln != "LNK_ELECTRONICS_TRAY" && ln != "LNK_CENTER_PANEL" && ln != "LNK_WIRING" && ln != "LNK_LIDAR")
                     oth2 = concatenateArrays([oth2, bs]);
             var tc = [];
             for (var c in evCollision(context, { "tools" : posQ(St), "targets" : qUnion(oth2) }))

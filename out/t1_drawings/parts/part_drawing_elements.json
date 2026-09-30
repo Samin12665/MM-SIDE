@@ -1,0 +1,74 @@
+{
+ "MAIN_CHASSIS": {
+  "drawing": "ea8664221e1d4bcd3e947243",
+  "pdf_blob": "c608e189b20421c6c6153e87"
+ },
+ "FRONT_BULKHEAD": {
+  "drawing": "e8016c4adf3ab06d19736736",
+  "pdf_blob": "02e7eeba69526585ec831f43"
+ },
+ "BELLCRANK_L": {
+  "drawing": "d427278a8b64e56f6bb67c5e",
+  "pdf_blob": "a65346c486c73b157047b905"
+ },
+ "FRONT_LOWER_ARM_L": {
+  "drawing": "d5714a0d3200a52541e3c4a7",
+  "pdf_blob": "97ef0f20876a9f8e7410177f"
+ },
+ "FRONT_UPPER_ARM_L": {
+  "drawing": "e909220e6529cd6403e4c00c",
+  "pdf_blob": "d0bb77f0f484dae5c621c1a7"
+ },
+ "FRONT_KNUCKLE_L": {
+  "drawing": "f933f8d8c522bffaa0d730f5",
+  "pdf_blob": "3006a189635d2909a50f4110"
+ },
+ "TRAILING_ARM_L": {
+  "drawing": "d97e27920213060dd9741d67",
+  "pdf_blob": "e433173258bbb234742ea08e"
+ },
+ "HEX_ADAPTER_L": {
+  "drawing": "651f16595a95aea0ed2f93d7",
+  "pdf_blob": "fd36e79f4cf5014be128a612"
+ },
+ "BATTERY_TUNNEL": {
+  "drawing": "dc947f21dd4c02f3b66359ee",
+  "pdf_blob": "37a14c9c44dc4fd468332667"
+ },
+ "TRAY_FRAME": {
+  "drawing": "388b62e449d270278cf82e42",
+  "pdf_blob": "c1e2dc38793074c1b6becd3d"
+ },
+ "TRAY_UPPER_DECK": {
+  "drawing": "de4658be631f59b1ba7ade6b",
+  "pdf_blob": "a0c0782913220bf6d03a91ef"
+ },
+ "BODY_MAIN_FRONT": {
+  "drawing": "834e5abbb63979cae08c2e55",
+  "pdf_blob": "899fcc1528023e434d9c89b7"
+ },
+ "BODY_MAIN_REAR": {
+  "drawing": "85f01db186223800c9e207b1",
+  "pdf_blob": "63d475fef0624e900400e710"
+ },
+ "CENTER_SERVICE_PANEL": {
+  "drawing": "e3c7c7ef273757a8c781b62e",
+  "pdf_blob": "5a2c2d76ad0ac153d94c850d"
+ },
+ "REAR_BATTERY_PANEL": {
+  "drawing": "3af27abe2941a7c0bec7c386",
+  "pdf_blob": "28002107367bcb4e674970a0"
+ },
+ "FRONT_SENSOR_FASCIA": {
+  "drawing": "a1dae87fcc3139d003886f09",
+  "pdf_blob": "179bbbcdcd8123c82bec5d61"
+ },
+ "CAMERA_POD": {
+  "drawing": "e9f1f47cdb253b5d1618d9f3",
+  "pdf_blob": "8df4f41d777e5c934e374006"
+ },
+ "FENDER_FL": {
+  "drawing": "c6a09f1fcaae96f14e64abb7",
+  "pdf_blob": "4f1087473d9ea2d9da05db7d"
+ }
+}

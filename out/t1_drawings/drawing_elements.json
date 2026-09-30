@@ -1,0 +1,36 @@
+{
+ "drawings": {
+  "complete": {
+   "id": "8df6b54b2dd9b5bc8ed05956",
+   "name": "DRW_ASM_RC_CAR_COMPLETE"
+  },
+  "front_steering": {
+   "id": "3d1806809e00a62c8048a497",
+   "name": "DRW_ASM_FRONT_STEERING"
+  },
+  "drivetrain": {
+   "id": "f2a0e613cf50a7d42b289e06",
+   "name": "DRW_ASM_DRIVETRAIN"
+  },
+  "chassis": {
+   "id": "72438b1985e1f5c0e4307e87",
+   "name": "DRW_ASM_CHASSIS"
+  },
+  "body": {
+   "id": "b2470b7a59fcfd079277733c",
+   "name": "DRW_ASM_BODY"
+  }
+ },
+ "pdf_blob_elements": {
+  "complete": "6a621734f9c4713e8da29062",
+  "front_steering": "7a546b813ca41e1475bb6463",
+  "drivetrain": "b91e9232964c6d02799c6507",
+  "chassis": "1bbdebec844f62c1b9981455",
+  "body": "e4ecf2ee712f1cd046864031"
+ },
+ "version": {
+  "id": "cc5d8bf171189a59348d322b",
+  "name": "V5 steering motion + exports + drawings"
+ },
+ "part_drawings": "see parts/part_drawing_elements.json (version V5.1 part drawings)"
+}

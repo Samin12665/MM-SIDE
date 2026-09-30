@@ -26,12 +26,16 @@ export enum ArvStudio
     annotation { "Name" : "65 Camera pod" }
     CAMERA_POD,
     annotation { "Name" : "66 Fenders" }
-    FENDERS
+    FENDERS,
+    annotation { "Name" : "55 Wiring" }
+    WIRING,
+    annotation { "Name" : "70 LiDAR option" }
+    LIDAR
 }
 
 function isBody(s is ArvStudio) returns boolean
 {
-    return s == ArvStudio.FASCIA || s == ArvStudio.BODY_MAIN || s == ArvStudio.CENTER_PANEL || s == ArvStudio.BATTERY_PANEL || s == ArvStudio.CAMERA_POD || s == ArvStudio.FENDERS;
+    return s == ArvStudio.FASCIA || s == ArvStudio.BODY_MAIN || s == ArvStudio.CENTER_PANEL || s == ArvStudio.BATTERY_PANEL || s == ArvStudio.CAMERA_POD || s == ArvStudio.FENDERS || s == ArvStudio.LIDAR;
 }
 
 export function buildStudio(context is Context, id is Id, s is ArvStudio, P is map, g is map, steer is number)
@@ -58,6 +62,10 @@ export function buildStudio(context is Context, id is Id, s is ArvStudio, P is m
         buildCameraPod(context, id, P, g);
     else if (s == ArvStudio.FENDERS)
         buildFenders(context, id, P, g);
+    else if (s == ArvStudio.WIRING)
+        buildWiring(context, id, P, g);
+    else if (s == ArvStudio.LIDAR)
+        buildLidar(context, id, P, g);
     else
         throw regenError("ARV: studio " ~ toString(s) ~ " not implemented yet");
 }
@@ -88,5 +96,15 @@ export const arvStudio = defineFeature(function(context is Context, id is Id, de
             recordError(context, id, toString(definition.studio), e);
         }
         setVariable(context, "arvStatus", toString(definition.studio) ~ " built");
+        var err = "";
+        try silent
+        {
+            err = getVariable(context, "arvError");
+        }
+        if (err != "")
+        {
+            fCuboid(context, id + "errmk", { "corner1" : v(0, 0, -300), "corner2" : v(1, 1, -299) });
+            setProperty(context, { "entities" : qCreatedBy(id + "errmk", EntityType.BODY), "propertyType" : PropertyType.NAME, "value" : "BUILD ERRORS " ~ err });
+        }
         // hide the derived master reference sketches' clutter is left to the user; they are construction only
     });

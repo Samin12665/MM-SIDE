@@ -249,6 +249,9 @@ function mainBodyFeatures(context is Context, B is map, P is map, g is map)
         for (var s in [1, -1])
             for (var f in fenderScrews(P, g))
                 cax(context, B, "Y", [xc + f[0], s * (g.ys - t - 3), f[1]], 9, 6.02, true);
+    // LiDAR-option roof bosses
+    for (var p in lidarScrews(P, g))
+        cyl(context, B, [p[0], p[1], g.zRoof - 12], [p[0], p[1], g.zRoof - 0.5], 4.5, true);
     // camera-pod roof bosses
     for (var p in camPodScrews(P, g))
         cyl(context, B, [p[0], p[1], roofZ(P, g, p[0]) - 12], [p[0], p[1], roofZ(P, g, p[0]) - 0.5], 4.5, true);
@@ -277,6 +280,14 @@ function mainBodyFeatures(context is Context, B is map, P is map, g is map)
             hClr(context, B, [g.xNose - 15, s * 63, z], [g.xNose - 15, s * (62 - t - 1), z]);
     for (var p in camPodScrews(P, g))
         hIns(context, B, [p[0], p[1], roofZ(P, g, p[0])], [0, 0, -1], 6);
+    // bay front-wall grommet holes (front ToF harness, camera USB + CSI) and LiDAR-option roof holes
+    cax(context, B, "X", [bayX1(g) - 1.2, -48, 92], 10, 6, false);
+    cax(context, B, "X", [g.towerF1 + 17.2, -46, 91], 10, 6, false);
+    cax(context, B, "X", [bayX1(g) - 1.2, -3, 121.5], 18, 6, false);
+    const lp = lidarPos(P, g);
+    cax(context, B, "Z", [lp[0], 0, g.zRoof - 1], 12, 6, false);
+    for (var p in lidarScrews(P, g))
+        hIns(context, B, [p[0], p[1], g.zRoof], [0, 0, -1], 6);
     // camera cable pass-through under the pod
     cyl(context, B, [P.cameraX - 30, 0, roofZ(P, g, P.cameraX - 30) - 8], [P.cameraX - 30, 0, roofZ(P, g, P.cameraX - 30) + 8], 9, false);
     // E-stop 22.3 mm panel hole
@@ -382,6 +393,11 @@ function buildBodyMain(context is Context, id is Id, P is map, g is map)
     for (var p in camPodScrews(P, g))
     {
         insert(context, id + ("ci" ~ n), [p[0], p[1], roofZ(P, g, p[0])], [0, 0, -1]);
+        n += 1;
+    }
+    for (var p in lidarScrews(P, g))
+    {
+        insert(context, id + ("li" ~ n), [p[0], p[1], g.zRoof], [0, 0, -1]);
         n += 1;
     }
     // E-stop (purchased, safety: stays exposed on the rear deck)
@@ -657,6 +673,7 @@ function buildFascia(context is Context, id is Id, P is map, g is map)
         const cs = coordSystem(v(rp[0], rp[1], rp[2]), Y, vector(-1, 0, 0));
         bx(context, Rb, cs, -5, 5, -3, 3, -3.1, 1, false);
         bx(context, Rb, cs, -7, 7, -9.5, 9.5, -12, -3.0, false);
+        cax(context, Rb, "X", [xe - 6, 0, P.rearSensorZ], 6, 14, false);
         fin(context, Rb, "REAR_BUMPER", "ARV-61-003", "Rear bumper, TPU 95A, 2x M3x16 into the rear-frame cross bar inserts; recessed rear VL53L1X.", ArvMat.TPU);
         var n = 0;
         for (var y in [-40, 40])
@@ -805,6 +822,8 @@ function pFender(context is Context, id is Id, P is map, g is map, xc is number,
     {
         hClr(context, B, [xc + f[0], g.ys - 1, f[1]], [xc + f[0], g.ys + 4, f[1]]);
     }
+    // nothing below the hull underside inside the tyre band (full-bump clearance), only the outer skirt drops
+    wb(context, B, xc - L - 1, xc + L + 1, g.ys - 1, P.fenderWidth - 2.5 - 0.01, g.zHB - 25, g.zHB + 0.5, false);
     // tactical detail: stepped edge light-bar recess on the outer face (functional reflector / LED strip)
     wb(context, B, xc - 30, xc + 30, P.fenderWidth - 1.2, P.fenderWidth + 1, g.zHB - 6, g.zHB - 2, false);
     stg(context, B);

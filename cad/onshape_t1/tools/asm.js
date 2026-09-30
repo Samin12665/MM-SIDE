@@ -89,8 +89,9 @@ window.buildAsm = async (name, studios, subs, links, base, opts) => {
 // ---- quota-safe variant: links from part descriptions "[LNK_...]", connectors from the ARV Link Connectors feature
 window.PRIMARY = { LNK_CHASSIS: 'MAIN_CHASSIS', LNK_FRONT_FRAME: 'FRONT_BULKHEAD', LNK_CRANK_L: 'BELLCRANK_L', LNK_CRANK_R: 'BELLCRANK_R', LNK_DRAG_LINK: 'DRAG_LINK', LNK_SERVO_LINK: 'SERVO_LINK', LNK_SERVO_HORN: 'SERVO_HORN_25T', LNK_KNUCKLE_L: 'FRONT_KNUCKLE_L', LNK_KNUCKLE_R: 'FRONT_KNUCKLE_R', LNK_WHEEL_FL: 'RIM_FL', LNK_WHEEL_FR: 'RIM_FR', LNK_TIE_ROD_L: 'TIE_ROD_L', LNK_TIE_ROD_R: 'TIE_ROD_R', LNK_CAMBER_LINK_L: 'CAMBER_LINK_L', LNK_CAMBER_LINK_R: 'CAMBER_LINK_R', LNK_REAR_ARM_L: 'TRAILING_ARM_L', LNK_REAR_ARM_R: 'TRAILING_ARM_R', LNK_WHEEL_RL: 'RIM_RL', LNK_WHEEL_RR: 'RIM_RR', LNK_REAR_SHOCK_L: 'SHOCK_RL', LNK_REAR_SHOCK_R: 'SHOCK_RR', LNK_BATTERY_TUNNEL: 'BATTERY_TUNNEL', LNK_BATTERY: 'BATTERY_3S_5000', LNK_ELECTRONICS_TRAY: 'TRAY_UPPER_DECK', LNK_FASCIA: 'FRONT_SENSOR_FASCIA', LNK_FRONT_BUMPER: 'FRONT_BUMPER', LNK_REAR_BUMPER: 'REAR_BUMPER', LNK_BODY_MAIN: 'BODY_MAIN_REAR', LNK_CENTER_PANEL: 'CENTER_SERVICE_PANEL', LNK_BATTERY_PANEL: 'REAR_BATTERY_PANEL', LNK_CAMERA_POD: 'CAMERA_POD', LNK_FENDER_FL: 'FENDER_FL', LNK_FENDER_FR: 'FENDER_FR', LNK_FENDER_RL: 'FENDER_RL', LNK_FENDER_RR: 'FENDER_RR' };
 // joint table mirrored from jointTable() in the library: [name, linkA, linkB, type]
-window.JTAB = (() => { const j = [['STEER_SERVO', 'LNK_FRONT_FRAME', 'LNK_SERVO_HORN', 'REVOLUTE'], ['HORN_LINK', 'LNK_SERVO_HORN', 'LNK_SERVO_LINK', 'REVOLUTE'], ['LINK_DRAG', 'LNK_DRAG_LINK', 'LNK_SERVO_LINK', 'REVOLUTE']];
-  for (const t of ['L', 'R']) j.push(['CRANK_' + t, 'LNK_FRONT_FRAME', 'LNK_CRANK_' + t, 'REVOLUTE'], ['DRAG_' + t, 'LNK_CRANK_' + t, 'LNK_DRAG_LINK', 'REVOLUTE'], ['KINGPIN_' + t, 'LNK_FRONT_FRAME', 'LNK_KNUCKLE_' + t, 'REVOLUTE'], ['WHEEL_F' + t, 'LNK_KNUCKLE_' + t, 'LNK_WHEEL_F' + t, 'REVOLUTE'], ['TIE_OUT_' + t, 'LNK_KNUCKLE_' + t, 'LNK_TIE_ROD_' + t, 'BALL'], ['TIE_IN_' + t, 'LNK_CRANK_' + t, 'LNK_TIE_ROD_' + t, 'BALL'], ['CAMBER_OUT_' + t, 'LNK_KNUCKLE_' + t, 'LNK_CAMBER_LINK_' + t, 'BALL'], ['CAMBER_IN_' + t, 'LNK_FRONT_FRAME', 'LNK_CAMBER_LINK_' + t, 'BALL'], ['WHEEL_R' + t, 'LNK_REAR_ARM_' + t, 'LNK_WHEEL_R' + t, 'REVOLUTE']);
+window.JTAB = (() => { const j = [['STEER_SERVO', 'LNK_FRONT_FRAME', 'LNK_SERVO_HORN', 'REVOLUTE'], ['HORN_LINK', 'LNK_SERVO_HORN', 'LNK_SERVO_LINK', 'REVOLUTE'], ['LINK_DRAG', 'LNK_DRAG_LINK', 'LNK_SERVO_LINK', 'BALL']];
+  // DRAG_R / LINK_DRAG are balls: removes the planar-loop redundancy that stalled the solver mid-sweep
+  for (const t of ['L', 'R']) j.push(['CRANK_' + t, 'LNK_FRONT_FRAME', 'LNK_CRANK_' + t, 'REVOLUTE'], ['DRAG_' + t, 'LNK_CRANK_' + t, 'LNK_DRAG_LINK', t === 'L' ? 'REVOLUTE' : 'BALL'], ['KINGPIN_' + t, 'LNK_FRONT_FRAME', 'LNK_KNUCKLE_' + t, 'REVOLUTE'], ['WHEEL_F' + t, 'LNK_KNUCKLE_' + t, 'LNK_WHEEL_F' + t, 'REVOLUTE'], ['TIE_OUT_' + t, 'LNK_KNUCKLE_' + t, 'LNK_TIE_ROD_' + t, 'BALL'], ['TIE_IN_' + t, 'LNK_CRANK_' + t, 'LNK_TIE_ROD_' + t, 'BALL'], ['CAMBER_OUT_' + t, 'LNK_KNUCKLE_' + t, 'LNK_CAMBER_LINK_' + t, 'BALL'], ['CAMBER_IN_' + t, 'LNK_FRONT_FRAME', 'LNK_CAMBER_LINK_' + t, 'BALL'], ['WHEEL_R' + t, 'LNK_REAR_ARM_' + t, 'LNK_WHEEL_R' + t, 'REVOLUTE']);
   j.push(['BATTERY_SLIDE', 'LNK_BATTERY_TUNNEL', 'LNK_BATTERY', 'SLIDER']); return j; })();
 
 // add the connector feature to each studio (once) and remember its feature id
@@ -137,6 +138,55 @@ window.buildAsm3 = async (name, studios, links, base, opts) => {
   for (const j of JOINTS) { if (!(present.has(j.a) && present.has(j.b))) continue; const A = LINKS[j.a], Bq = LINKS[j.b];
     const lim = j.name === 'STEER_SERVO' ? ['-29 deg', '29 deg'] : (j.name === 'BATTERY_SLIDE' ? ['-165 mm', '0 mm'] : null);
     todo.push([j.name, j.type, mcq(pth(j.a, A.primaryId), j.feature + '.' + j.aop), mcq(pth(j.b, Bq.primaryId), j.feature + '.' + j.bop), lim]); }
+  const res = []; let left = 0;
+  for (const t of todo) { if (done.has(t[0])) continue; if (calls >= max) { left++; continue; } const st = await addAsmFeat(aeid, mateFeature(t[0], t[1], t[2], t[3], t[4])); calls++; if (st !== 'OK') res.push(t[0] + ':' + st); }
+  return { aeid, total: todo.length, left, bad: res };
+};
+
+// ---- T1.1: determinate double wishbone, split shocks, suspension joints (cross-studio features per side)
+window.PRIMARY = Object.assign({}, window.PRIMARY, { LNK_ARM_L: 'FRONT_LOWER_ARM_L', LNK_ARM_R: 'FRONT_LOWER_ARM_R', LNK_UPPER_ARM_L: 'FRONT_UPPER_ARM_L', LNK_UPPER_ARM_R: 'FRONT_UPPER_ARM_R',
+  LNK_SHOCKB_FL: 'SHOCK_BODY_FL', LNK_SHOCKB_FR: 'SHOCK_BODY_FR', LNK_SHOCKR_FL: 'SHOCK_ROD_FL', LNK_SHOCKR_FR: 'SHOCK_ROD_FR',
+  LNK_SHOCKB_RL: 'SHOCK_BODY_RL', LNK_SHOCKB_RR: 'SHOCK_BODY_RR', LNK_SHOCKR_RL: 'SHOCK_ROD_RL', LNK_SHOCKR_RR: 'SHOCK_ROD_RR',
+  LNK_WIRING: 'HARNESS_MAIN_POWER', LNK_LIDAR: 'LIDAR_ADAPTER_PLATE' });
+window.JTAB = (() => { const j = [['STEER_SERVO', 'LNK_FRONT_FRAME', 'LNK_SERVO_HORN', 'REVOLUTE'], ['HORN_LINK', 'LNK_SERVO_HORN', 'LNK_SERVO_LINK', 'REVOLUTE'], ['LINK_DRAG', 'LNK_DRAG_LINK', 'LNK_SERVO_LINK', 'BALL']];
+  // DRAG_R / LINK_DRAG are balls: removes the planar-loop redundancy that stalled the solver mid-sweep
+  for (const t of ['L', 'R']) j.push(['CRANK_' + t, 'LNK_FRONT_FRAME', 'LNK_CRANK_' + t, 'REVOLUTE'], ['DRAG_' + t, 'LNK_CRANK_' + t, 'LNK_DRAG_LINK', t === 'L' ? 'REVOLUTE' : 'BALL'],
+    ['ARM_HINGE_' + t, 'LNK_FRONT_FRAME', 'LNK_ARM_' + t, 'REVOLUTE'], ['UARM_HINGE_' + t, 'LNK_FRONT_FRAME', 'LNK_UPPER_ARM_' + t, 'REVOLUTE'],
+    ['LBALL_' + t, 'LNK_ARM_' + t, 'LNK_KNUCKLE_' + t, 'BALL'], ['UBALL_' + t, 'LNK_UPPER_ARM_' + t, 'LNK_KNUCKLE_' + t, 'BALL'],
+    ['WHEEL_F' + t, 'LNK_KNUCKLE_' + t, 'LNK_WHEEL_F' + t, 'REVOLUTE'], ['TIE_OUT_' + t, 'LNK_KNUCKLE_' + t, 'LNK_TIE_ROD_' + t, 'BALL'], ['TIE_IN_' + t, 'LNK_CRANK_' + t, 'LNK_TIE_ROD_' + t, 'BALL'],
+    ['FSHOCK_TOP_' + t, 'LNK_FRONT_FRAME', 'LNK_SHOCKB_F' + t, 'BALL'], ['FSHOCK_BOT_' + t, 'LNK_ARM_' + t, 'LNK_SHOCKR_F' + t, 'BALL'], ['FSHOCK_SLIDE_' + t, 'LNK_SHOCKB_F' + t, 'LNK_SHOCKR_F' + t, 'REVOLUTE'],
+    ['RARM_PIVOT_' + t, 'LNK_CHASSIS', 'LNK_REAR_ARM_' + t, 'REVOLUTE'], ['WHEEL_R' + t, 'LNK_REAR_ARM_' + t, 'LNK_WHEEL_R' + t, 'REVOLUTE'],
+    ['RSHOCK_TOP_' + t, 'LNK_CHASSIS', 'LNK_SHOCKB_R' + t, 'BALL'], ['RSHOCK_BOT_' + t, 'LNK_REAR_ARM_' + t, 'LNK_SHOCKR_R' + t, 'BALL'], ['RSHOCK_SLIDE_' + t, 'LNK_SHOCKB_R' + t, 'LNK_SHOCKR_R' + t, 'REVOLUTE']);
+  j.push(['BATTERY_SLIDE', 'LNK_BATTERY_TUNNEL', 'LNK_BATTERY', 'SLIDER']); return j; })();
+// shock slides are REVOLUTE = ride height locked (no spring model); set CYLINDRICAL to explore travel (bump audited in 99_AUDIT_BUMP_*).
+// Angular limits written through REST locked the joints in the solver, so only the battery slide keeps a limit; steering range is
+// the 99_AUDIT_FULL_* poses (crank +-31 deg = servo about +-28 deg).
+window.JLIM = { BATTERY_SLIDE: ['-165 mm', '0 mm'] };
+
+window.gatherLinks4 = async (studios) => { const conn = ids().conn; window.LINKS = {};
+  for (const n of studios) { const parts = await api('GET', '/parts' + DW + '/e/' + ELS[n]);
+    for (const p of parts) { const m = (p.description || '').match(/\[(LNK_[A-Z_]+) #(\d+)\]$/); if (!m) continue; const ln = m[1];
+      const L = LINKS[ln] || (LINKS[ln] = { studio: n, eid: ELS[n], feature: conn[n], partIds: [], serial: {}, primaryId: null, mo: 'mo_' + ln });
+      L.partIds.push(p.partId); L.serial[p.partId] = m[2]; if (p.name === PRIMARY[ln] && !L.primaryId) L.primaryId = p.partId; } }
+  window.JOINTS = JTAB.filter(j => LINKS[j[1]] && LINKS[j[2]]).map(j => ({ name: j[0], a: j[1], b: j[2], type: j[3], afeature: LINKS[j[1]].feature, bfeature: LINKS[j[2]].feature, aop: 'mj_' + j[0] + '_a', bop: 'mj_' + j[0] + '_b' }));
+  return Object.entries(LINKS).map(([k, v]) => k + ':' + v.partIds.length + (v.primaryId ? '' : '!')).join(' '); };
+
+window.buildAsm4 = async (name, studios, links, base, opts) => {
+  opts = opts || {}; const max = opts.maxCalls || 60; let calls = 0;
+  const aeid = await mkAsm(name);
+  let def = await asmDef(aeid);
+  const haveEl = new Set(def.rootAssembly.instances.map(i => i.elementId));
+  for (const s of studios) if (!haveEl.has(ELS[s])) { if (calls >= max) return { aeid, left: -1 }; await insertStudio(aeid, ELS[s]); calls++; }
+  def = await asmDef(aeid); const pm = pathMap(def); const done = await mateNames(aeid);
+  const pth = (ln, pid) => pm[LINKS[ln].eid + '|' + pid];
+  const todo = [];
+  for (const ln of links) { const L = LINKS[ln];
+    for (const pid of L.partIds) if (pid !== L.primaryId) todo.push(['P ' + ln + ' #' + L.serial[pid], 'FASTENED', mcq(pth(ln, L.primaryId), L.feature + '.mo_' + ln), mcq(pth(ln, pid), L.feature + '.mp' + L.serial[pid]), null]); }
+  const present = new Set(links); const moving = new Set(); for (const j of JOINTS) if (present.has(j.a) && present.has(j.b)) moving.add(j.b);
+  for (const ln of links) { if (ln === base || moving.has(ln)) continue; const a = LINKS[base], b = LINKS[ln];
+    todo.push(['FASTEN ' + ln, 'FASTENED', mcq(pth(base, a.primaryId), a.feature + '.mo_' + base), mcq(pth(ln, b.primaryId), b.feature + '.mo_' + ln), null]); }
+  for (const j of JOINTS) { if (!(present.has(j.a) && present.has(j.b))) continue;
+    todo.push([j.name, j.type, mcq(pth(j.a, LINKS[j.a].primaryId), j.afeature + '.' + j.aop), mcq(pth(j.b, LINKS[j.b].primaryId), j.bfeature + '.' + j.bop), JLIM[j.name] || null]); }
   const res = []; let left = 0;
   for (const t of todo) { if (done.has(t[0])) continue; if (calls >= max) { left++; continue; } const st = await addAsmFeat(aeid, mateFeature(t[0], t[1], t[2], t[3], t[4])); calls++; if (st !== 'OK') res.push(t[0] + ':' + st); }
   return { aeid, total: todo.length, left, bad: res };
