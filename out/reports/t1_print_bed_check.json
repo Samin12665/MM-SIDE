@@ -1,0 +1,352 @@
+[
+ {
+  "pn": "ARV-10-002",
+  "name": "LOWER_SKID",
+  "dims": [
+   226,
+   144,
+   2
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-10-001",
+  "name": "MAIN_CHASSIS",
+  "dims": [
+   230,
+   158,
+   55
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-10-005",
+  "name": "REAR_BUMPER_FRAME",
+  "dims": [
+   108,
+   120,
+   46
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-10-003",
+  "name": "REAR_SHOCK_TOWER_L",
+  "dims": [
+   31,
+   27,
+   56
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-10-004",
+  "name": "REAR_SHOCK_TOWER_R",
+  "dims": [
+   31,
+   27,
+   56
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-20-007",
+  "name": "BELLCRANK_L",
+  "dims": [
+   41,
+   15,
+   15
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-20-008",
+  "name": "BELLCRANK_R",
+  "dims": [
+   41,
+   15,
+   15
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-20-009",
+  "name": "DRAG_LINK",
+  "dims": [
+   10,
+   108,
+   3
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-20-001",
+  "name": "FRONT_BULKHEAD",
+  "dims": [
+   104,
+   124,
+   58
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-20-003",
+  "name": "FRONT_KNUCKLE_L",
+  "dims": [
+   39,
+   20,
+   22
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-20-004",
+  "name": "FRONT_KNUCKLE_R",
+  "dims": [
+   39,
+   20,
+   22
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-20-005",
+  "name": "FRONT_LOWER_ARM_L",
+  "dims": [
+   45,
+   73,
+   9
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-20-006",
+  "name": "FRONT_LOWER_ARM_R",
+  "dims": [
+   45,
+   73,
+   9
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-20-002",
+  "name": "FRONT_SHOCK_TOWER",
+  "dims": [
+   15,
+   176,
+   79
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-20-010",
+  "name": "SERVO_LINK",
+  "dims": [
+   40,
+   10,
+   3
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-30-003",
+  "name": "HEX_ADAPTER_L",
+  "dims": [
+   22,
+   14,
+   22
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-30-004",
+  "name": "HEX_ADAPTER_R",
+  "dims": [
+   22,
+   14,
+   22
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-30-001",
+  "name": "TRAILING_ARM_L",
+  "dims": [
+   151,
+   22,
+   52
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-30-002",
+  "name": "TRAILING_ARM_R",
+  "dims": [
+   151,
+   22,
+   52
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-40-001",
+  "name": "BATTERY_TUNNEL",
+  "dims": [
+   164,
+   152,
+   50
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-50-001",
+  "name": "TRAY_FRAME",
+  "dims": [
+   150,
+   132,
+   49
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-50-002",
+  "name": "TRAY_UPPER_DECK",
+  "dims": [
+   154,
+   152,
+   19
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-61-002",
+  "name": "FRONT_BUMPER",
+  "dims": [
+   27,
+   200,
+   54
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-61-001",
+  "name": "FRONT_SENSOR_FASCIA",
+  "dims": [
+   41,
+   124,
+   35
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-61-003",
+  "name": "REAR_BUMPER",
+  "dims": [
+   20,
+   172,
+   40
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-62-001",
+  "name": "BODY_MAIN_FRONT",
+  "dims": [
+   185,
+   224,
+   100
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-62-002",
+  "name": "BODY_MAIN_REAR",
+  "dims": [
+   245,
+   224,
+   100
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-63-001",
+  "name": "CENTER_SERVICE_PANEL",
+  "dims": [
+   159,
+   224,
+   32
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-64-001",
+  "name": "REAR_BATTERY_PANEL",
+  "dims": [
+   28,
+   88,
+   42
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-65-001",
+  "name": "CAMERA_POD",
+  "dims": [
+   60,
+   146,
+   47
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-65-002",
+  "name": "CAMERA_WINDOW",
+  "dims": [
+   2,
+   91,
+   26
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-66-001",
+  "name": "FENDER_FL",
+  "dims": [
+   153,
+   40,
+   30
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-66-002",
+  "name": "FENDER_FR",
+  "dims": [
+   153,
+   40,
+   30
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-66-003",
+  "name": "FENDER_RL",
+  "dims": [
+   153,
+   40,
+   30
+  ],
+  "fits": true
+ },
+ {
+  "pn": "ARV-66-004",
+  "name": "FENDER_RR",
+  "dims": [
+   153,
+   40,
+   30
+  ],
+  "fits": true
+ }
+]

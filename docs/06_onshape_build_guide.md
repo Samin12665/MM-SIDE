@@ -1,3 +1,5 @@
+> **Superseded for T1:** the car is now built directly in Onshape. See `13_T1_ONSHAPE_BUILD.md`. This guide describes the original ARV-1 import paths.
+
 # 06 — Onshape Build Guide (PHASES 6–14 in Onshape)
 
 **Status:** the cloud session that produced this project could not reach `cad.onshape.com` (its

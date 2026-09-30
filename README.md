@@ -1,5 +1,10 @@
 # ARV-1: Autonomous Research Vehicle (MM-SIDE)
 
+> **T1 tactical UGV revision (2026-09-30):** the vehicle is now built natively in Onshape as a master-skeleton / derived model with an enclosed tactical body, a centre electronics hatch, a rear battery panel, a camera pod, partial fenders and a split-level nose. It has 35 printed designs, 272 parts and 5 fully mated assemblies, and it was clearance-audited at full lock.
+> Document: https://cad.onshape.com/documents/495cc3804c007e87f5b21cee. See [docs/13_T1_ONSHAPE_BUILD.md](docs/13_T1_ONSHAPE_BUILD.md), [bom/BOM_T1_onshape.csv](bom/BOM_T1_onshape.csv) and [cad/onshape_t1/](cad/onshape_t1/).
+>
+> ![T1](out/t1_renders/01_iso_front.png)
+
 A portfolio-grade, physically buildable 1/10-class autonomous ground vehicle: a custom printed
 torsion-box chassis, double-wishbone front suspension with an optimised Ackermann bellcrank
 steering system, independent trailing-arm rear suspension carrying two encoder gearmotors

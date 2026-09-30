@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><title>ARV carry</title><body>carry
+<script>
+// Bundle local files into window.name (read back by the Onshape tab after a same-tab navigation).
+window.carry = async (list) => {
+  const files = {};
+  for (const f of list) { const r = await fetch('/' + f + '?' + Date.now()); files[f] = await r.text(); }
+  window.name = JSON.stringify({ arvBundle: true, files });
+  return Object.keys(files).map(k => k + ':' + files[k].length).join(',');
+};
+</script></body>
